@@ -21,20 +21,20 @@ public class Matriks {
 
     void isiMatriks(){
         Scanner scanner = new Scanner(System.in);
-        int m, n;
-        m = scanner.nextInt();
+        int n, m;
         n = scanner.nextInt();
+        m = scanner.nextInt();
         
         int i,j;
 
-        for (i = 0; i < m; i++){
-            for (j = 0; j < n; j++){
+        for (i = 0; i < n; i++){
+            for (j = 0; j < m; j++){
                 this.Mat[i][j] = scanner.nextInt();
             }
         }
 
-        this.iEff = m;
-        this.jEff = n;
+        this.iEff = n;
+        this.jEff = m;
     }
 
     void cetakMatriks(){
