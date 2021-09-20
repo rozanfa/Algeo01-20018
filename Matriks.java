@@ -43,7 +43,7 @@ public class Matriks {
         int i,j;
         for (i = 0; i < this.iEff; i++){
             for (j = 0; j < this.jEff; j++){
-                System.out.print(this.Mat[i][j] + " ");
+                System.out.print(String.format("%.2f ", this.Mat[i][j]));
             }
             System.out.println();
         }
