@@ -80,8 +80,8 @@ public class Matriks {
         else {
             for (int j = 0; j < this.jEff; j++){
                 
-                if (this.Mat[r][c] != 0){
-                    k = this.Mat[r][c];
+                if (this.Mat[r][j] != 0){
+                    k = this.Mat[r][j];
                     break;
                 }
             }
@@ -109,10 +109,10 @@ public class Matriks {
                     substractRow(ii, i, findFirstNonZeroInRow(ii, i));
                     this.justDeletedAllZeroRow = false;
                 }
-                makeLeftOne(ii, ii);
             }
+            makeLeftOne(i, i);
         }
-    }
+        
 
     boolean isSPLHaveSolution(){
         boolean yes = false;
@@ -161,6 +161,8 @@ public class Matriks {
             this.justDeletedAllZeroRow = true;
         }
     }
+
+
 
     void spl_gauss_jordan(){
         obe_gauss_jordan();
