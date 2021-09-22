@@ -9,6 +9,7 @@ public class Matriks {
     int zeroRows = 0;
     int iInitial = 0;
     boolean justDeletedAllZeroRow = false;
+    boolean isHaveAnswer = true;
 
     Matriks(){
 
@@ -62,6 +63,20 @@ public class Matriks {
         cetakMatriks();
     }
 
+    void swapIfFirstRowIsZero(int r, int s){
+        if (this.Mat[r][s] == 0){
+            for (int i = r; i < this.iEff; i++) {
+                if (this.Mat[i][s] != 0){
+                    for (int j = 0; j < this.jEff; j++){
+                        Float temp = this.Mat[r][j];
+                        this.Mat[r][j] = this.Mat[i][j];
+                        this.Mat[i][j] = temp;
+                    }
+                }
+            }
+        }
+    }
+
     void makeLeftOne(int r, int c){
         // Menjadikan elemen baris paling kiri bernilai satu 
         // dengan membagi baris dengan konstanta yang sesuai
@@ -93,6 +108,7 @@ public class Matriks {
     void obe_gauss(){
         // Melakukan OBE pada matriks hingga menjadi Matriks Gaussian
         for (int i = 0; i < this.iEff; i++){
+            swapIfFirstRowIsZero(i,i);
             makeLeftOne(i, i);
             for (int ii = i + 1; ii < this.iEff; ii++){
                 substractRow(ii, i, this.Mat[ii][i]);

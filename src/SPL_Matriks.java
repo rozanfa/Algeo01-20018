@@ -60,6 +60,27 @@ public class SPL_Matriks extends Matriks{
     */
 
 
+    void printUniqueSolution_gauss(){
+        Float res[] = new Float[10];
+        int p = this.iEff - 1;
+        for (int i=this.iEff-1; i>=0; i--){
+            res[i] = this.Mat[i][this.jEff-1]; 
+            for (int j=this.jEff-2; j>p; j--){
+                res[p] -= res[j] * this.Mat[i][j];
+            }
+            p--;
+        }
+        for (int i=0; i < this.iEff; i++){
+            if (i != this.iEff - 1){
+                System.out.print(String.format("x[%d] = %.2f, ", i+1, res[i]));
+            }
+            else{
+                System.out.println(String.format("x[%d] = %.2f", i+1, res[i]));
+            }
+        }
+    }
+
+
     void spl_gauss(){
         obe_gauss();
         System.out.println("");
@@ -71,7 +92,7 @@ public class SPL_Matriks extends Matriks{
                 System.out.println("Solusi banyak");
             }
             else {
-                printUniqueSolution_gauss_jordan();
+                printUniqueSolution_gauss();
             }
         }
         else {
