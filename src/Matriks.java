@@ -1,4 +1,3 @@
-package GkMirip;
 import java.util.Scanner;
 
 public class Matriks {
@@ -8,6 +7,7 @@ public class Matriks {
     int iEff = 0;
     int jEff = 0;
     int zeroRows = 0;
+    int iInitial = 0;
     boolean justDeletedAllZeroRow = false;
 
     Matriks(){
@@ -25,6 +25,7 @@ public class Matriks {
         int i,j;
         this.iEff = n;
         this.jEff = m;
+        this.iInitial = n;
         for (i = 0; i < n; i++){
             for (j = 0; j < m; j++){
                 this.Mat[i][j] = scanner.nextFloat();
@@ -112,39 +113,12 @@ public class Matriks {
             }
             makeLeftOne(i, i);
         }
-        
-
-    boolean isSPLHaveSolution(){
-        boolean yes = false;
-        if (this.Mat[this.iEff-1][this.jEff-1] != 0) {
-            for (int j = 0; j < this.jEff - 1; j++){
-                if (this.Mat[this.iEff-1][j] != 0) {
-                    yes = true;
-                }
-            }
-        }
-        else {
-            yes = true;
-        } 
-        return yes;
-    }
-
-    boolean isSPLHaveManySolution(){
-        return this.iEff < this.jEff - 1;
-    }
-
-    void printUniqueSolution(){
-        for (int i = 0; i < this.iEff; i++){
-            if (i != this.iEff - 1){
-                System.out.print(String.format("x[%d] = %.2f, ", i+1, this.Mat[i][this.jEff-1]));
-            }
-            else{
-                System.out.println(String.format("x[%d] = %.2f", i+1, this.Mat[i][this.jEff-1]));
-            }
-        }
     }
 
     void deleteRowIfRowAllZero(int r){
+        // Menghapus baris jika semua elemen di dalam baris bernilai nol.
+        // Namun, tetap akan dicetak ke dalam layar karena terdapat
+        // variabel yang menyimpan jumlah baris yang dihapus
         boolean allZero = true;
         for (int j=0; j< this.jEff; j++){
             if (this.Mat[r][j] != 0) 
@@ -162,24 +136,4 @@ public class Matriks {
         }
     }
 
-
-
-    void spl_gauss_jordan(){
-        obe_gauss_jordan();
-        System.out.println("");
-        System.out.println("Hasil Matriks :");
-        cetakMatriks();
-        System.out.println("");
-        if (isSPLHaveSolution()){
-            if (isSPLHaveManySolution()){
-                System.out.println("Solusi banyak");
-            }
-            else {
-                printUniqueSolution();
-            }
-        }
-        else {
-            System.out.println("Solusi tidak ada");
-        }
-    }
 }
