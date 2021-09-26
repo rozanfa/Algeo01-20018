@@ -19,6 +19,7 @@ public class SPL_Matriks extends Matriks{
     }
 
     void printUniqueSolution_gauss_jordan(){
+        System.out.println("Solusi unik");
         for (int i = 0; i < this.iEff; i++){
             if (i != this.iEff - 1){
                 System.out.print(String.format("x[%d] = %.2f, ", i+1, this.Mat[i][this.jEff-1]));
@@ -33,6 +34,21 @@ public class SPL_Matriks extends Matriks{
 
     
     void printManySolution(){
+        System.out.println("Solusi banyak");
+        for (int i=0; i<this.iEff; i++){
+            int f = findFirstNonZeroIndexInRow(i, 0);
+            if (this.Mat[i][f] != 1) {
+                makeLeftOne(i, f);
+            }
+            String res = String.format("x[%d] = %.2f ", f+1, this.Mat[i][this.jEff-1]) ;
+            for (int jj = f + 1; jj<this.jEff-1; jj++){
+                if (this.Mat[i][jj] != 0){
+                    res += String.format("+ (%.2f*x[%d]) ", -1*this.Mat[i][jj], jj + 1);
+                }
+            }
+            System.out.println(res);
+        }
+        /*
         char var[] = {'r','s','t','u','v','w','x','y','z','a'};
         int maxVar = this.jEff - this.iEff + 1;
         Float res[] = new Float[10];
@@ -49,7 +65,7 @@ public class SPL_Matriks extends Matriks{
             }
         }
         int countVar = maxVar;
-        for (int i=this.iEff; i>=0; i--){
+        for (int i=this.iEff-1; i>=0; i--){
             if (this.Mat[i][p] == 1){
                 res[p] = this.Mat[i][this.jEff-1];
                 if (maxVar == 0){
@@ -100,12 +116,13 @@ public class SPL_Matriks extends Matriks{
                     System.out.print(String.format("x[%d] = " + stringRes[j], j + 1));
                 }
             }
-        }
+        }*/
     }
     
 
 
     void printUniqueSolution_gauss(){
+        System.out.println("Solusi unik");
         Float res[] = new Float[10];
         int p = this.iEff - 1;
         for (int i=this.iEff-1; i>=0; i--){
@@ -134,7 +151,8 @@ public class SPL_Matriks extends Matriks{
         System.out.println("");
         if (isSPLHaveSolution()){
             if (isSPLHaveManySolution()){
-                System.out.println("Solusi banyak");
+                //System.out.println("Solusi banyak");
+                printManySolution();
             }
             else {
                 printUniqueSolution_gauss();
@@ -165,4 +183,9 @@ public class SPL_Matriks extends Matriks{
             System.out.println("Solusi tidak ada");
         }
     }
+
+
+
+
+    
 }

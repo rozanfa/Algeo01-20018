@@ -11,7 +11,7 @@ public class Matriks {
     int zeroRows = 0;
     int iInitial = 0;
     boolean justDeletedAllZeroRow = false;
-    boolean isHaveAnswer = true; //pengen banget gw fix ke hasAnswer aeugh 
+    boolean isHaveAnswer = true; //pengen banget gw fix ke hasAnswer aeugh // sorry rip inggris aeugh
 
     /**
      * Constructor for the type Matriks <br></br>
@@ -74,13 +74,17 @@ public class Matriks {
 
     void substractRow(int r, int s, Float k){
         // Baris r dikurangi k kali baris s
-        for (int j = 0; j < this.jEff; j++){
-            this.Mat[r][j] -= k *this.Mat[s][j];
+        if (r != s){
+            System.out.println();
+            System.out.println(String.format("Substract row %d with %.1f * row %d" , r, k, s));
+            for (int j = 0; j < this.jEff; j++){
+                this.Mat[r][j] -= k *this.Mat[s][j];
+            }
+            deleteRowIfRowAllZero(r);
+            
+            cetakMatriks();
         }
-        deleteRowIfRowAllZero(r);
-        System.out.println();
-        System.out.println(String.format("%d %d %.1f", r, s, k));
-        cetakMatriks();
+
     }
 
     /**
@@ -105,6 +109,39 @@ public class Matriks {
         }
     }
 
+    void swapRow(int row1, int row2){
+        //System.out.println(String.format("%d %d", row1, row2));
+        //System.out.println("Before swapRow");
+        //cetakMatriks();
+        Float temp;
+        for (int j = 0; j < this.jEff; j++){
+            //System.out.println(String.format("%f, %f", this.Mat[row1][j], this.Mat[row2][j]));
+            temp = this.Mat[row2][j];
+            this.Mat[row2][j] = this.Mat[row1][j];
+            this.Mat[row1][j] = temp;
+            //System.out.println("");
+            //System.out.println(temp);
+            //cetakMatriks();
+            //System.out.println("");
+        }
+        //System.out.println("");
+        //System.out.println("After swapRow");
+        //cetakMatriks();
+    }
+
+    void sort(){
+        // Mengurutkan matriks berdasarkan angka 0 di bagian depan
+        for (int i = 0; i < this.iEff; i++){
+            for (int ii = i + 1; ii < this.iEff; ii++){
+                int i1 = findFirstNonZeroIndexInRow(i, 0);
+                int i2 = findFirstNonZeroIndexInRow(ii, 0);
+                if (i1 > i2) {
+                    swapRow(i, ii);
+                }
+            }
+        }
+    }
+
     void makeLeftOne(int r, int c){
         // Menjadikan elemen baris paling kiri bernilai satu 
         // dengan membagi baris dengan konstanta yang sesuai
@@ -118,10 +155,6 @@ public class Matriks {
 
     float findFirstNonZeroInRow(int r, int c){
         float k = (float) 0;
-        if (this.Mat[r][c] != 0){
-            k = this.Mat[r][c];
-        }
-        else {
             for (int j = 0; j < this.jEff; j++){
                 
                 if (this.Mat[r][j] != 0){
@@ -129,17 +162,37 @@ public class Matriks {
                     break;
                 }
             }
-        }
         return k;
+    }
+
+    int findFirstNonZeroIndexInRow(int r, int c){
+        int idx = 0;
+            for (int j = 0; j < this.jEff; j++){
+                
+                if (this.Mat[r][j] != 0){
+                    idx = j;
+                    break;
+                }
+        }
+        return idx;
     }
 
     void obe_gauss(){
         // Melakukan OBE pada matriks hingga menjadi Matriks Gaussian
+        sort();
         for (int i = 0; i < this.iEff; i++){
             makeLeftOne(i, i);
             for (int ii = i + 1; ii < this.iEff; ii++){
-                swapIfFirstRowIsZero(i,ii);
+                //swapIfFirstRowIsZero(i,ii);
                 substractRow(ii, i, this.Mat[ii][i]);
+                while (this.justDeletedAllZeroRow) {
+                    //System.out.println(String.format("first nonzero %d", findFirstNonZeroIndexInRow(i, 0)));
+                    if (ii == this.iEff){
+                        ii--;
+                    }
+                    substractRow(ii, i, this.Mat[ii][findFirstNonZeroIndexInRow(i, 0)]);
+                    this.justDeletedAllZeroRow = false;
+                }
             }
         }
     }
@@ -149,15 +202,36 @@ public class Matriks {
         obe_gauss();
         for (int i = 1; i < this.iEff; i++){
             for (int ii = i - 1; ii >= 0; ii--){
-                substractRow(ii, i, findFirstNonZeroInRow(ii, i));
+                substractRow(ii, i, this.Mat[ii][findFirstNonZeroIndexInRow(i, 0)]);
                 while (this.justDeletedAllZeroRow) {
-                    substractRow(ii, i, findFirstNonZeroInRow(ii, i));
+                    //System.out.println(String.format("first nonzero %d", findFirstNonZeroIndexInRow(i, 0)));
+                    if (ii == this.iEff){
+                        ii--;
+                    }
+                    substractRow(ii, i, this.Mat[ii][findFirstNonZeroIndexInRow(i, 0)]);
                     this.justDeletedAllZeroRow = false;
                 }
             }
             makeLeftOne(i, i);
         }
+        sort();
+        for (int i = 1; i < this.iEff; i++){
+            for (int ii = i - 1; ii >= 0; ii--){
+                substractRow(ii, i, this.Mat[ii][findFirstNonZeroIndexInRow(i, 0)]);
+                while (this.justDeletedAllZeroRow) {
+                    //System.out.println(String.format("first nonzero %d", findFirstNonZeroIndexInRow(i, 0)));
+                    if (ii == this.iEff){
+                        ii--;
+                    }
+                    substractRow(ii, i, this.Mat[ii][findFirstNonZeroIndexInRow(i, 0)]);
+                    this.justDeletedAllZeroRow = false;
+                }
+            }
+            makeLeftOne(i, i);
+        }
+        sort();
     }
+
 
     void deleteRowIfRowAllZero(int r){
         // Menghapus baris jika semua elemen di dalam baris bernilai nol.
