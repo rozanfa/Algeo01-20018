@@ -73,6 +73,7 @@ public class Matriks {
                         this.Mat[i][j] = temp;
                     }
                 }
+                //break;
             }
         }
     }
@@ -108,9 +109,9 @@ public class Matriks {
     void obe_gauss(){
         // Melakukan OBE pada matriks hingga menjadi Matriks Gaussian
         for (int i = 0; i < this.iEff; i++){
-            swapIfFirstRowIsZero(i,i);
             makeLeftOne(i, i);
             for (int ii = i + 1; ii < this.iEff; ii++){
+                swapIfFirstRowIsZero(i,ii);
                 substractRow(ii, i, this.Mat[ii][i]);
             }
         }
