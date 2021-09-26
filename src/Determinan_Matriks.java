@@ -29,4 +29,94 @@ public class Determinan_Matriks extends Matriks {
             return tempDet;
         }
     }
+    
+    static int NumberofSwap (Matriks mat){
+    	int swap=0,i,j,r;
+    	for (i=0; i <mat.iEff; i++){
+            for(j = 0; j <mat.jEff; j++){
+            	if (i==j && mat.Mat[i][j] == 0){
+                    for (r = i; r < mat.iEff; r++) {
+                        if (mat.Mat[r][i] != 0){
+                            for (int k = 0; k < mat.jEff; k++){
+                                Float temp = mat.Mat[r][j];
+                                mat.Mat[r][j] = mat.Mat[i][j];
+                                mat.Mat[i][j] = temp;
+                            }
+                            swap++;
+                        }
+                    }
+                }
+            }
+    	}
+    	return swap;
+    }
+    
+    static void substractRow(Matriks mat, int r, int s, Float k, Float h){
+        for (int j = 0; j < mat.jEff; j++){
+            mat.Mat[r][j] -= k/h *mat.Mat[s][j];
+        }
+        mat.deleteRowIfRowAllZero(r);
+        System.out.println();
+        System.out.println(String.format("%d %d %.1f", r, s, k));
+        mat.cetakMatriks();
+    }
+    
+    static void RowReduction (Matriks mat) {
+    	int i,j;
+    	for (i = 0; i < mat.iEff; i++){
+            mat.swapIfFirstRowIsZero(i,i);
+            for (j = i + 1; j < mat.iEff; j++){
+                substractRow(mat, j, i, mat.Mat[j][i], mat.Mat[i][i]);
+            }
+        }
+    }
+    
+    static void DetwithRowReduction (Matriks mat) {
+    	int i,j;
+    	double det;
+    	if (NumberofSwap(mat)%2==0) {
+    		det=1.0;
+    	}
+    	else {
+    		det=-1.0;
+    	}
+    	RowReduction(mat);
+    	if (mat.justDeletedAllZeroRow) {
+    		det=0;
+    	}
+    	else {
+    		for (i=0; i <mat.iEff; i++){
+        		for(j = 0; j <mat.jEff; j++){
+        			if (i==j) {
+                    	det*=mat.Mat[i][j];
+                    }
+                }
+            }
+    	}
+    	System.out.println(det);
+    }
+    
+    static void DetwithSarrus (Matriks mat){
+    	if (mat.jEff == 3 && mat.iEff ==3) {
+    		Matriks matbaru = new Matriks();
+    		matbaru.iEff=3;
+    		matbaru.jEff=5;
+    		matbaru.iInitial = 3;
+    		int i,j;
+    		for (i=0; i <matbaru.iEff; i++){
+                for(j = 0; j <matbaru.iEff; j++){
+                	if (j<2 && i<3) {
+                		matbaru.Mat[i][j+3]=mat.Mat[i][j];
+                	}
+                	matbaru.Mat[i][j]=mat.Mat[i][j];
+                }
+    		}
+    		matbaru.cetakMatriks();
+    		System.out.print(matbaru.Mat[0][0]+"*"+matbaru.Mat[1][1]+"*"+matbaru.Mat[2][2]+"+"+matbaru.Mat[0][1]+"*"+matbaru.Mat[1][2]+"*"+matbaru.Mat[2][3]+"+"+matbaru.Mat[0][2]+"*"+matbaru.Mat[1][3]+"*"+matbaru.Mat[2][4]+"-"+matbaru.Mat[2][0]+"*"+matbaru.Mat[1][1]+"*"+matbaru.Mat[0][2]+"-"+matbaru.Mat[2][1]+"*"+matbaru.Mat[1][2]+"*"+matbaru.Mat[0][3]+"-"+matbaru.Mat[2][2]+"*"+matbaru.Mat[1][3]+"*"+matbaru.Mat[0][4]);
+    		System.out.println(" = "+ (matbaru.Mat[0][0]*matbaru.Mat[1][1]*matbaru.Mat[2][2]+matbaru.Mat[0][1]*matbaru.Mat[1][2]*matbaru.Mat[2][3]+matbaru.Mat[0][2]*matbaru.Mat[1][3]*matbaru.Mat[2][4]-matbaru.Mat[2][0]*matbaru.Mat[1][1]*matbaru.Mat[0][2]-matbaru.Mat[2][1]*matbaru.Mat[1][2]*matbaru.Mat[0][3]-matbaru.Mat[2][2]*matbaru.Mat[1][3]*matbaru.Mat[0][4]));
+    	}
+        else {
+        	System.out.println("Tidak bisa mencari determinan menggunakan metode Sarrus selain di matriks 3 x 3");
+        }
+    }
 }

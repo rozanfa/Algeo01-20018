@@ -234,4 +234,75 @@ public class Extended extends Matriks{
         temp = getTranspose(getCofactorMatrix(mat));
         return temp;
     }
+    static boolean isSPLHaveSolution(Matriks mat){
+        boolean yes = false;
+        if (mat.Mat[mat.iEff-1][mat.jEff-1] != 0) {
+            for (int j = 0; j < mat.jEff - 1; j++){
+                if (mat.Mat[mat.iEff-1][j] != 0) {
+                    yes = true;
+                }
+            }
+        }
+        else {
+            yes = true;
+        } 
+        return yes;
+    }
+
+    static boolean isSPLHaveManySolution(Matriks mat){
+        return mat.iEff < mat.jEff - 1;
+    }
+
+    static void printUniqueSolution_gauss_jordan(Matriks mat){
+        for (int i = 0; i < mat.iEff; i++){
+            if (i != mat.iEff - 1){
+                System.out.print(String.format("x[%d] = %.2f, ", i+1, mat.Mat[i][mat.jEff-1]));
+            }
+            else{
+                System.out.println(String.format("x[%d] = %.2f", i+1, mat.Mat[i][mat.jEff-1]));
+            }
+        }
+    }
+    
+
+
+    static void printUniqueSolution_gauss(Matriks mat){
+        Float res[] = new Float[10];
+        int p = mat.iEff - 1;
+        for (int i=mat.iEff-1; i>=0; i--){
+            res[i] = mat.Mat[i][mat.jEff-1]; 
+            for (int j=mat.jEff-2; j>p; j--){
+                res[p] -= res[j] * mat.Mat[i][j];
+            }
+            p--;
+        }
+        for (int i=0; i < mat.iEff; i++){
+            if (i != mat.iEff - 1){
+                System.out.print(String.format("x[%d] = %.2f, ", i+1, res[i]));
+            }
+            else{
+                System.out.println(String.format("x[%d] = %.2f", i+1, res[i]));
+            }
+        }
+    }
+
+
+    static void spl_gauss(Matriks mat){
+        mat.obe_gauss();
+        System.out.println("");
+        System.out.println("Hasil Matriks :");
+        mat.cetakMatriks();
+        System.out.println("");
+        if (isSPLHaveSolution(mat)){
+            if (isSPLHaveManySolution(mat)){
+                System.out.println("Solusi banyak");
+            }
+            else {
+                printUniqueSolution_gauss(mat);
+            }
+        }
+        else {
+            System.out.println("Solusi tidak ada");
+        }
+    }
 }
