@@ -2,17 +2,37 @@ import java.util.Scanner;
 
 public class Matriks {
     
+    String name;
     Float Mat[][] = new Float[10][10];
+    Float matrix[][]; 
 
     int iEff = 0;
     int jEff = 0;
     int zeroRows = 0;
     int iInitial = 0;
     boolean justDeletedAllZeroRow = false;
-    boolean isHaveAnswer = true;
+    boolean isHaveAnswer = true; //pengen banget gw fix ke hasAnswer aeugh 
 
-    Matriks(){
-
+    /**
+     * Constructor for the type Matriks <br></br>
+     * 
+     * Contains: <ul> 
+     * <li> float matrix[10][10]</li>
+     * <li> int iEff </li>
+     * <li> int jEff </li>
+     * <li> int zeroRows </li>
+     * <li> int iInitial </li>
+     * <li> boolean justDeletedAllZeroRow </li>
+     * <li> boolean isHaveAnswer</li>
+     */
+    public Matriks(){
+        matrix = Mat; 
+        iEff = 0;
+        jEff = 0;
+        zeroRows = 0;
+        iInitial = 0;
+        justDeletedAllZeroRow = false;
+        isHaveAnswer = true;
     }
 
     void isiMatriks(){
@@ -63,7 +83,14 @@ public class Matriks {
         cetakMatriks();
     }
 
-    void swapIfFirstRowIsZero(int r, int s){
+    /**
+     * Checks if the elmt in (r, s) is 0, if it is: <br></br>
+     * Swaps the row with the bottom most row by shuffling every row downwards by one, the bottom most row loops back to the top. <br> </br>
+     * Ex: {RowA, RowB, RowC} becomes {RowC, RowA, RowB}. 
+     * @param r --> Which row is the element in
+     * @param s --> Which column is the element in
+     */
+    void swapIfFirstRowIsZero(int r, int s){ 
         if (this.Mat[r][s] == 0){
             for (int i = r; i < this.iEff; i++) {
                 if (this.Mat[i][s] != 0){
