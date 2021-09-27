@@ -42,6 +42,7 @@ public class Matriks {
         n = scanner.nextInt();
         System.out.print("Masukkan kolom matriks: ");
         m = scanner.nextInt();
+        System.out.println(String.format("Masukkan matriks %d × %d :", n, m));
         
         int i,j;
         this.iEff = n;
@@ -53,6 +54,23 @@ public class Matriks {
             }
             deleteRowIfRowAllZero(i);
         }
+    }
+
+    Matriks copy(){
+        Matriks newMat = new Matriks();
+        newMat.iEff = this.iEff;
+        newMat.jEff = this.jEff;
+        newMat.iInitial = this.iInitial;
+        newMat.zeroRows = this.zeroRows;
+        newMat.justDeletedAllZeroRow = this.justDeletedAllZeroRow;
+        newMat.isHaveAnswer = this.isHaveAnswer;
+        newMat.name = this.name;
+        for (int i = 0; i < this.iEff; i++){
+            for (int j = 0; j < this.jEff; j++){
+                newMat.Mat[i][j] = this.Mat[i][j];
+            }
+        }
+        return newMat;
     }
 
     void cetakMatriks(){
@@ -74,7 +92,7 @@ public class Matriks {
 
     void substractRow(int r, int s, Float k){
         // Baris r dikurangi k kali baris s
-        if (r != s){
+        if (r != s && k != 0){
             System.out.println();
             System.out.println(String.format("Substract row %d with %.1f * row %d" , r, k, s));
             for (int j = 0; j < this.jEff; j++){

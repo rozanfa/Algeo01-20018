@@ -1,6 +1,9 @@
 public class driverMatriks {
     public static void main(String[] args) {
-        driverSPLMatirks.spl_metode_invers();
+        driverSPLMatirks.metode_gauss_jordan();
+        //Matriks a = new Matriks();
+        //a.isiMatriks();
+        //Determinan_Matriks.DetwithRowReduction(a);
         //SPL_Matriks M = new SPL_Matriks();
         //M.isiMatriks();
         //M.spl_gauss();

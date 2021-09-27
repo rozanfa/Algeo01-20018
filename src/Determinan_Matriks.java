@@ -95,6 +95,32 @@ public class Determinan_Matriks extends Matriks {
     	}
     	System.out.println(det);
     }
+
+    // kenapa yang atas nggak ngeprint di driver aja asdge
+    static double DetwithRowReduction_withReturn (Matriks mat) {
+    	int i,j;
+    	double det;
+    	if (NumberofSwap(mat)%2==0) {
+    		det=1.0;
+    	}
+    	else {
+    		det=-1.0;
+    	}
+    	RowReduction(mat);
+    	if (mat.justDeletedAllZeroRow) {
+    		det=0;
+    	}
+    	else {
+    		for (i=0; i <mat.iEff; i++){
+        		for(j = 0; j <mat.jEff; j++){
+        			if (i==j) {
+                    	det*=mat.Mat[i][j];
+                    }
+                }
+            }
+    	}
+    	return det;
+    }
     
     static void DetwithSarrus (Matriks mat){
     	if (mat.jEff == 3 && mat.iEff ==3) {

@@ -21,12 +21,7 @@ public class SPL_Matriks extends Matriks{
     void printUniqueSolution_gauss_jordan(){
         System.out.println("Solusi unik");
         for (int i = 0; i < this.iEff; i++){
-            if (i != this.iEff - 1){
-                System.out.print(String.format("x[%d] = %.2f, ", i+1, this.Mat[i][this.jEff-1]));
-            }
-            else{
-                System.out.println(String.format("x[%d] = %.2f", i+1, this.Mat[i][this.jEff-1]));
-            }
+            System.out.println(String.format("x[%d] = %.2f", i+1, this.Mat[i][this.jEff-1]));
         }
     }
 
@@ -133,12 +128,7 @@ public class SPL_Matriks extends Matriks{
             p--;
         }
         for (int i=0; i < this.iEff; i++){
-            if (i != this.iEff - 1){
-                System.out.print(String.format("x[%d] = %.2f, ", i+1, res[i]));
-            }
-            else{
-                System.out.println(String.format("x[%d] = %.2f", i+1, res[i]));
-            }
+            System.out.println(String.format("x[%d] = %f", i+1, res[i]));
         }
     }
 
