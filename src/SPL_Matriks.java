@@ -183,9 +183,4 @@ public class SPL_Matriks extends Matriks{
             System.out.println("Solusi tidak ada");
         }
     }
-
-
-
-
-    
 }

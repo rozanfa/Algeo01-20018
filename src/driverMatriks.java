@@ -1,8 +1,9 @@
 public class driverMatriks {
     public static void main(String[] args) {
-        SPL_Matriks M = new SPL_Matriks();
-        M.isiMatriks();
-        M.spl_gauss();
+        driverSPLMatirks.spl_metode_invers();
+        //SPL_Matriks M = new SPL_Matriks();
+        //M.isiMatriks();
+        //M.spl_gauss();
         /*
         Matriks mat1 = new Matriks();
         Extended.readMatrix(mat1);

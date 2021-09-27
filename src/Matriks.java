@@ -11,7 +11,7 @@ public class Matriks {
     int zeroRows = 0;
     int iInitial = 0;
     boolean justDeletedAllZeroRow = false;
-    boolean isHaveAnswer = true; //pengen banget gw fix ke hasAnswer aeugh // sorry rip inggris aeugh
+    boolean isHaveAnswer = true; //pengen banget gw fix ke hasAnswer aeugh // sorry bas rip inggris aeugh
 
     /**
      * Constructor for the type Matriks <br></br>
@@ -254,4 +254,29 @@ public class Matriks {
         }
     }
 
+
+
+    static public Matriks multiplyMatrix(Matriks m1, Matriks m2){
+        Matriks m3 = new Matriks();
+        m3.iEff = m1.iEff;
+        m3.jEff = m2.jEff;
+        int i,j,k;
+
+        //System.out.println("m1");
+        //m1.cetakMatriks();
+
+        //System.out.println("m2");
+        //m2.cetakMatriks();
+        
+        for (i=0; i<m1.iEff; i++){
+            for (j=0; j<m2.jEff; j++){
+                m3.Mat[i][j] = (float) 0;
+                for (k=0; k<m1.jEff; k++){
+                    //System.out.println(String.format("i %d j %d k %d",i,j,k));
+                    m3.Mat[i][j] += m1.Mat[i][k] * m2.Mat[k][j];
+                }
+            }
+        }
+        return m3;
+    }
 }
