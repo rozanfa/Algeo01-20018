@@ -1,4 +1,5 @@
 public class SPL_Matriks extends Matriks{
+
     boolean isSPLHaveSolution(){
         boolean yes = false;
         if (this.Mat[this.iEff-1][this.jEff-1] != 0) {

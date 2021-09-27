@@ -1,6 +1,10 @@
 public class driverMatriks {
     public static void main(String[] args) {
-        driverSPLMatirks.metode_gauss_jordan();
+        Matriks m1 = new Matriks();
+        m1.isiMatriks();
+        Regresi_Matriks.Regression(m1);
+        
+
         //Matriks a = new Matriks();
         //a.isiMatriks();
         //Determinan_Matriks.DetwithRowReduction(a);

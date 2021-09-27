@@ -42,7 +42,7 @@ public class Matriks {
         n = scanner.nextInt();
         System.out.print("Masukkan kolom matriks: ");
         m = scanner.nextInt();
-        System.out.println(String.format("Masukkan matriks %d × %d :", n, m));
+        System.out.println(String.format("Masukkan matriks %d x %d :", n, m));
         
         int i,j;
         this.iEff = n;

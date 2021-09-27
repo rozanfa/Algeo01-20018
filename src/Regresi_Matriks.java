@@ -1,13 +1,13 @@
-public class Regresi_Matriks extends Matriks {
+public class Regresi_Matriks extends SPL_Matriks {
 	   static void Regression (Matriks mat) {
-		   Matriks mat1 = new Matriks();
+		   SPL_Matriks mat1 = new SPL_Matriks();
 		   mat1.iEff=mat.jEff;
 		   mat1.jEff=mat.jEff+1;
 		   mat1.iInitial=mat.jEff;
 		   for (int i=0;i<mat1.iEff;i++) {
 			   for (int j=0;j<mat1.jEff;j++) {
 				   if (i==0 && j==0) {
-					   mat1.Mat[i][j]=(float) mat1.iEff;
+					   mat1.Mat[i][j]=(float) mat.iEff;
 				   }
 				   else {
 					   mat1.Mat[i][j]=(float) 0;
@@ -36,7 +36,7 @@ public class Regresi_Matriks extends Matriks {
 			   } 
 		   }
 		   mat1.cetakMatriks();
-		   Extended.spl_gauss(mat1);
+		   mat1.obe_gauss_jordan();
 	   }
 	       
 	       
