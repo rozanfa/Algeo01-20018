@@ -106,12 +106,14 @@ public class driverSPLMatirks {
 
     static void metode_gauss_jordan(){
         SPL_Matriks M = new SPL_Matriks();
+        System.out.println("Masukkan SPL dalam bentuk matriks augmented");
         M.isiMatriks();
         M.spl_gauss_jordan();
     }
 
     static void metode_gauss(){
         SPL_Matriks M = new SPL_Matriks();
+        System.out.println("Masukkan SPL dalam bentuk matriks augmented");
         M.isiMatriks();
         M.spl_gauss();
     }

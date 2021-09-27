@@ -94,7 +94,7 @@ public class Matriks {
         // Baris r dikurangi k kali baris s
         if (r != s && k != 0){
             System.out.println();
-            System.out.println(String.format("Substract row %d with %.1f * row %d" , r, k, s));
+            System.out.println(String.format("Baris %d dikurangi oleh baris %d dikali %.1f" , r, k, s));
             for (int j = 0; j < this.jEff; j++){
                 this.Mat[r][j] -= k *this.Mat[s][j];
             }
