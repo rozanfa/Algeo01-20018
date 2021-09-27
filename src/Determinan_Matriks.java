@@ -30,25 +30,17 @@ public class Determinan_Matriks extends Matriks {
         }
     }
     
-    static int NumberofSwap (Matriks mat){
-    	int swap=0,i,j,r;
-    	for (i=0; i <mat.iEff; i++){
-            for(j = 0; j <mat.jEff; j++){
-            	if (i==j && mat.Mat[i][j] == 0){
-                    for (r = i; r < mat.iEff; r++) {
-                        if (mat.Mat[r][i] != 0){
-                            for (int k = 0; k < mat.jEff; k++){
-                                Float temp = mat.Mat[r][j];
-                                mat.Mat[r][j] = mat.Mat[i][j];
-                                mat.Mat[i][j] = temp;
-                            }
-                            swap++;
-                        }
-                    }
+    static int NumberofSwap(Matriks mat,int r, int s){ 
+        int x=0;
+    	if (mat.Mat[r][s] == 0){
+            for (int i = r; i < mat.iEff; i++) {
+                if (mat.Mat[i][s] != 0){
+                	x+=1;
                 }
             }
-    	}
-    	return swap;
+
+        }
+    	return x;
     }
     
     static void substractRow(Matriks mat, int r, int s, Float k, Float h){
@@ -62,29 +54,28 @@ public class Determinan_Matriks extends Matriks {
     }
     
     static void RowReduction (Matriks mat) {
-    	int i,j;
+    	int i,j,swap=0;
     	for (i = 0; i < mat.iEff; i++){
             mat.swapIfFirstRowIsZero(i,i);
+            swap+=NumberofSwap(mat,i,i);
             for (j = i + 1; j < mat.iEff; j++){
                 substractRow(mat, j, i, mat.Mat[j][i], mat.Mat[i][i]);
             }
         }
+    	if  (swap%2!=0) {
+    		mat.Mat[0][0]*=-1;
+    	}
     }
     
     static void DetwithRowReduction (Matriks mat) {
     	int i,j;
     	double det;
-    	if (NumberofSwap(mat)%2==0) {
-    		det=1.0;
-    	}
-    	else {
-    		det=-1.0;
-    	}
     	RowReduction(mat);
     	if (mat.justDeletedAllZeroRow) {
     		det=0;
     	}
     	else {
+    		det=1.0;
     		for (i=0; i <mat.iEff; i++){
         		for(j = 0; j <mat.jEff; j++){
         			if (i==j) {
@@ -94,32 +85,6 @@ public class Determinan_Matriks extends Matriks {
             }
     	}
     	System.out.println(det);
-    }
-
-    // kenapa yang atas nggak ngeprint di driver aja asdge
-    static double DetwithRowReduction_withReturn (Matriks mat) {
-    	int i,j;
-    	double det;
-    	if (NumberofSwap(mat)%2==0) {
-    		det=1.0;
-    	}
-    	else {
-    		det=-1.0;
-    	}
-    	RowReduction(mat);
-    	if (mat.justDeletedAllZeroRow) {
-    		det=0;
-    	}
-    	else {
-    		for (i=0; i <mat.iEff; i++){
-        		for(j = 0; j <mat.jEff; j++){
-        			if (i==j) {
-                    	det*=mat.Mat[i][j];
-                    }
-                }
-            }
-    	}
-    	return det;
     }
     
     static void DetwithSarrus (Matriks mat){
@@ -146,3 +111,4 @@ public class Determinan_Matriks extends Matriks {
         }
     }
 }
+
