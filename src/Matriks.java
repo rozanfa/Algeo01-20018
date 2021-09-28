@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Matriks {
@@ -44,17 +46,66 @@ public class Matriks {
         n = scanner.nextInt();
         System.out.print("Masukkan kolom matriks: ");
         m = scanner.nextInt();
-        System.out.println(String.format("Masukkan matriks %d x %d :", n, m));
         
         int i,j;
         this.iEff = n;
         this.jEff = m;
         this.iInitial = n;
-        for (i = 0; i < n; i++){
-            for (j = 0; j < m; j++){
+
+        System.out.println("\nPilih jenis input");
+        System.out.println("1. Input dari keyboard");
+        System.out.println("2. Input dari file");
+        System.out.print("Pilihan : ");
+        int option = scanner.nextInt();
+        System.out.println("");
+        switch (option) {
+            case 1: {
+                isiMatriks_dariKeyboard();
+                break;
+            }
+            case 2: {
+                isiMatriks_dariFile();
+                break;
+            }
+            default : {
+                System.out.println("Input tidak valid");
+            }
+        }
+    }
+
+    void isiMatriks_dariKeyboard(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(String.format("Masukkan matriks %d x %d :", n, m));
+        for (int i = 0; i < this.iEff; i++){
+            for (int j = 0; j < this.jEff; j++){
                 this.Mat[i][j] = scanner.nextFloat();
             }
             deleteRowIfRowAllZero(i);
+        }
+    }
+
+    void isiMatriks_dariFile(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Masukkan lokasi file: ");
+        String fileName = scanner.nextLine();
+        Scanner fileScanner = null;
+
+        try {
+            File file = new File(fileName);
+            fileScanner = new Scanner(file);
+            if (fileScanner.hasNext()){
+                for (int i = 0; i < this.iEff; i++){
+                    for (int j = 0; j < this.jEff; j++){
+                        this.Mat[i][j] = fileScanner.nextFloat();
+                    }
+                    fileScanner.nextLine();
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Error : Tidak ditemukan file " + ex.getMessage());
+        } finally {
+            if (fileScanner != null)
+                fileScanner.close();
         }
     }
 
@@ -283,7 +334,7 @@ public class Matriks {
         }
     }
 
-
+    
 
     static public Matriks multiplyMatrix(Matriks m1, Matriks m2){
         Matriks m3 = new Matriks();

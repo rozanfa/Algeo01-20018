@@ -56,7 +56,7 @@ public class driverSPLMatirks {
         Matriks main = new Matriks();
         System.out.println("Masukkan SPL dalam bentuk matriks augmented");
         main.isiMatriks();
-        Float res[] = new Float[10];
+        Float res[] = new Float[15];
         if (main.iEff == (main.jEff - 1)){
             Matriks cons = new Matriks();
             cons.iEff = main.iEff;

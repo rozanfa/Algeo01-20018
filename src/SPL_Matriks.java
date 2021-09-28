@@ -32,7 +32,7 @@ public class SPL_Matriks extends Matriks{
     void printManySolution(){
         System.out.println("Solusi banyak");
         for (int i=0; i<this.iEff; i++){
-            char varName = 'r';
+            char varName = 'p';
             for (int k=0; k<i ;k++) varName ++;
             int f = findFirstNonZeroIndexInRow(i, 0);
             if (this.Mat[i][f] != 1) {
@@ -53,7 +53,7 @@ public class SPL_Matriks extends Matriks{
             }
             System.out.println(res);
         }
-        char varName = 'r';
+        char varName = 'p';
         for (int j = this.iEff; j < this.jEff - 1; j++){
             for (int k=0; k<this.iEff-1 ;k++) varName ++;
             System.out.println(String.format("x[%d] = %c", j+1, varName));
@@ -134,7 +134,7 @@ public class SPL_Matriks extends Matriks{
 
     void printUniqueSolution_gauss(){
         System.out.println("Solusi unik");
-        Float res[] = new Float[10];
+        Float res[] = new Float[15];
         int p = this.iEff - 1;
         for (int i=this.iEff-1; i>=0; i--){
             res[i] = this.Mat[i][this.jEff-1]; 
