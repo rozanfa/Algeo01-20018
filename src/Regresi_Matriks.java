@@ -1,6 +1,6 @@
-public class Regresi_Matriks extends SPL_Matriks {
+public class Regresi_Matriks extends Matriks {
 	   static void Regression (Matriks mat) {
-		   SPL_Matriks mat1 = new SPL_Matriks();
+		   Matriks mat1 = new Matriks();
 		   mat1.iEff=mat.jEff;
 		   mat1.jEff=mat.jEff+1;
 		   mat1.iInitial=mat.jEff;
@@ -37,9 +37,24 @@ public class Regresi_Matriks extends SPL_Matriks {
 		   }
 		   mat1.cetakMatriks();
 		   mat1.obe_gauss_jordan();
-	   }
+		   System.out.print("y = ");
+		   for (int l=0;l<mat1.iEff;l++) {
+			   if (l==0) {
+				   System.out.print(String.format("%2.3f", mat1.Mat[l][mat1.jEff-1]));
+			   }
+		       else {
+		    	   if (mat1.Mat[l][mat1.jEff-1]>=0) {
+		    		   System.out.print(" + "+ String.format("%2.3f", mat1.Mat[l][mat1.jEff-1])+"x"+String.valueOf(l));
+		    	   }
+		    	   else {
+		    		   System.out.print(" - "+String.format("%2.3f", (-mat1.Mat[l][mat1.jEff-1]))+"x"+String.valueOf(l));
+		    	   } 
+			   }
+		    }   
+			System.out.println();
+	   
 	       
-	       
+	  }      
 }
 
 

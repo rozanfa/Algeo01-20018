@@ -115,22 +115,29 @@ public class Determinan_Matriks extends Matriks {
                 }
                 System.out.println();
     		}
+    		
+    		for (i = 0; i <3; i++){
+                for (j = 0; j <5; j++){
+                	
+                }
+    		}
+    		
     		System.out.println("");
-    		System.out.println(matbaru2[0][0]+" * "+matbaru2[1][1]+" * "+matbaru2[2][2]+" + "
-	                           +matbaru2[0][1]+" * "+matbaru2[1][2]+" * "+matbaru2[2][3]+" + "
-			                   +matbaru2[0][2]+" * "+matbaru2[1][3]+" * "+matbaru2[2][4]+" - "
-	                           +matbaru2[2][0]+" * "+matbaru2[1][1]+" * "+matbaru2[0][2]+" - "
-			                   +matbaru2[2][1]+" * "+matbaru2[1][2]+" * "+matbaru2[0][3]+" - "
-	                           +matbaru2[2][2]+" * "+matbaru2[1][3]+" * "+matbaru2[0][4]);
+    		System.out.println("("+matbaru2[0][0]+" * "+matbaru2[1][1]+" * "+matbaru2[2][2]+") + ("
+	                           +matbaru2[0][1]+" * "+matbaru2[1][2]+" * "+matbaru2[2][3]+") + ("
+			                   +matbaru2[0][2]+" * "+matbaru2[1][3]+" * "+matbaru2[2][4]+") - ("
+	                           +matbaru2[2][0]+" * "+matbaru2[1][1]+" * "+matbaru2[0][2]+") - ("
+			                   +matbaru2[2][1]+" * "+matbaru2[1][2]+" * "+matbaru2[0][3]+") - ("
+	                           +matbaru2[2][2]+" * "+matbaru2[1][3]+" * "+matbaru2[0][4]+")");
     		
     		System.out.println("");
     		
-    		System.out.print(matbaru.Mat[0][0]+" * "+matbaru.Mat[1][1]+" * "+matbaru.Mat[2][2]+" + "
-    		                 +matbaru.Mat[0][1]+" * "+matbaru.Mat[1][2]+" * "+matbaru.Mat[2][3]+" + "
-    				         +matbaru.Mat[0][2]+" * "+matbaru.Mat[1][3]+" * "+matbaru.Mat[2][4]+" - "
-    		                 +matbaru.Mat[2][0]+" * "+matbaru.Mat[1][1]+" * "+matbaru.Mat[0][2]+" - "
-    				         +matbaru.Mat[2][1]+" * "+matbaru.Mat[1][2]+" * "+matbaru.Mat[0][3]+" - "
-    		                 +matbaru.Mat[2][2]+" * "+matbaru.Mat[1][3]+" * "+matbaru.Mat[0][4]);
+    		System.out.print("("+matbaru.Mat[0][0]+" * "+matbaru.Mat[1][1]+" * "+matbaru.Mat[2][2]+") + ("
+    		                 +matbaru.Mat[0][1]+" * "+matbaru.Mat[1][2]+" * "+matbaru.Mat[2][3]+") + ("
+    				         +matbaru.Mat[0][2]+" * "+matbaru.Mat[1][3]+" * "+matbaru.Mat[2][4]+") - ("
+    		                 +matbaru.Mat[2][0]+" * "+matbaru.Mat[1][1]+" * "+matbaru.Mat[0][2]+") - ("
+    				         +matbaru.Mat[2][1]+" * "+matbaru.Mat[1][2]+" * "+matbaru.Mat[0][3]+") - ("
+    		                 +matbaru.Mat[2][2]+" * "+matbaru.Mat[1][3]+" * "+matbaru.Mat[0][4]+")");
     		
     		System.out.println(" = "+ (matbaru.Mat[0][0]*matbaru.Mat[1][1]*matbaru.Mat[2][2]+
     				                  matbaru.Mat[0][1]*matbaru.Mat[1][2]*matbaru.Mat[2][3]+
@@ -143,5 +150,6 @@ public class Determinan_Matriks extends Matriks {
         	System.out.println("Tidak bisa mencari determinan menggunakan metode Sarrus selain di matriks 3 x 3");
         }
     }
+    
 }
 
