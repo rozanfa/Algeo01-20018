@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Matriks {
     
     String name;
-    Float Mat[][] = new Float[10][10];
+    Float Mat[][] = new Float[15][15];
     Float matrix[][]; 
 
     int iEff = 0;
@@ -126,7 +126,7 @@ public class Matriks {
         return newMat;
     }
 
-    void cetakMatriks(){
+    public void cetakMatriks(){
         int i,j;
         for (i = 0; i < this.iEff; i++){
             for (j = 0; j < this.jEff; j++){
@@ -143,7 +143,7 @@ public class Matriks {
         
     }
 
-    void substractRow(int r, int s, Float k){
+    public void substractRow(int r, int s, Float k){
         // Baris r dikurangi k kali baris s
         if (r != s && k != 0){
             System.out.println();
@@ -165,7 +165,7 @@ public class Matriks {
      * @param r --> Which row is the element in
      * @param s --> Which column is the element in
      */
-    void swapIfFirstRowIsZero(int r, int s){ 
+    public void swapIfFirstRowIsZero(int r, int s){ 
         if (this.Mat[r][s] == 0){
             for (int i = r; i < this.iEff; i++) {
                 if (this.Mat[i][s] != 0){
@@ -180,7 +180,7 @@ public class Matriks {
         }
     }
 
-    void swapRow(int row1, int row2){
+    public void swapRow(int row1, int row2){
         //System.out.println(String.format("%d %d", row1, row2));
         //System.out.println("Before swapRow");
         //cetakMatriks();
@@ -203,7 +203,7 @@ public class Matriks {
         this.justSwappedRow = true;
     }
 
-    void sort(){
+    public void sort(){
         // Mengurutkan matriks berdasarkan angka 0 di bagian depan
         for (int i = 0; i < this.iEff; i++){
             for (int ii = i + 1; ii < this.iEff; ii++){
@@ -216,7 +216,7 @@ public class Matriks {
         }
     }
 
-    void makeLeftOne(int r, int c){
+    public void makeLeftOne(int r, int c){
         // Menjadikan elemen baris paling kiri bernilai satu 
         // dengan membagi baris dengan konstanta yang sesuai
         float k = findFirstNonZeroInRow(r, c);
@@ -229,7 +229,7 @@ public class Matriks {
         }
     }
 
-    float findFirstNonZeroInRow(int r, int c){
+    public float findFirstNonZeroInRow(int r, int c){
         float k = (float) 0;
             for (int j = 0; j < this.jEff; j++){
                 
@@ -241,7 +241,7 @@ public class Matriks {
         return k;
     }
 
-    int findFirstNonZeroIndexInRow(int r, int c){
+    public int findFirstNonZeroIndexInRow(int r, int c){
         int idx = 0;
             for (int j = 0; j < this.jEff; j++){
                 
@@ -253,7 +253,7 @@ public class Matriks {
         return idx;
     }
 
-    void obe_gauss(){
+    public void obe_gauss(){
         // Melakukan OBE pada matriks hingga menjadi Matriks Gaussian
         sort();
         for (int i = 0; i < this.iEff; i++){
@@ -277,7 +277,7 @@ public class Matriks {
         }
     }
 
-    void obe_gauss_jordan(){
+    public void obe_gauss_jordan(){
         // Melakukan OBE pada matriks hingga menjadi Matriks Gauss-Jordan
         obe_gauss();
         for (int i = 1; i < this.iEff; i++){
@@ -313,7 +313,7 @@ public class Matriks {
     }
 
 
-    void deleteRowIfRowAllZero(int r){
+    public void deleteRowIfRowAllZero(int r){
         // Menghapus baris jika semua elemen di dalam baris bernilai nol.
         // Namun, tetap akan dicetak ke dalam layar karena terdapat
         // variabel yang menyimpan jumlah baris yang dihapus
