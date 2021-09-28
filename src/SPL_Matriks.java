@@ -32,17 +32,32 @@ public class SPL_Matriks extends Matriks{
     void printManySolution(){
         System.out.println("Solusi banyak");
         for (int i=0; i<this.iEff; i++){
+            char varName = 'r';
+            for (int k=0; k<i ;k++) varName ++;
             int f = findFirstNonZeroIndexInRow(i, 0);
             if (this.Mat[i][f] != 1) {
                 makeLeftOne(i, f);
             }
-            String res = String.format("x[%d] = %.2f ", f+1, this.Mat[i][this.jEff-1]) ;
-            for (int jj = f + 1; jj<this.jEff-1; jj++){
+            String res = String.format("x[%d] = %f ", f+1, this.Mat[i][this.jEff-1]) ;
+            for (int jj = f + 1; jj<this.jEff-1; jj++){ 
                 if (this.Mat[i][jj] != 0){
-                    res += String.format("+ (%.2f*x[%d]) ", -1*this.Mat[i][jj], jj + 1);
+                    float kof = -1 * this.Mat[i][jj];
+                    if (kof < 0){
+                        res += String.format("- %f%c ", -1*kof, varName);
+                    }
+                    else {
+                        res += String.format("+ %f%c ", kof, varName);
+                    }
                 }
+                varName ++;
             }
             System.out.println(res);
+        }
+        char varName = 'r';
+        for (int j = this.iEff; j < this.jEff - 1; j++){
+            for (int k=0; k<this.iEff-1 ;k++) varName ++;
+            System.out.println(String.format("x[%d] = %c", j+1, varName));
+            varName ++;
         }
         /*
         char var[] = {'r','s','t','u','v','w','x','y','z','a'};
