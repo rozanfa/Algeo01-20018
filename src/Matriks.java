@@ -12,6 +12,7 @@ public class Matriks {
     int iInitial = 0;
     boolean justDeletedAllZeroRow = false;
     boolean isHaveAnswer = true; //pengen banget gw fix ke hasAnswer aeugh // sorry bas rip inggris aeugh
+    boolean justSwappedRow = false;
 
     /**
      * Constructor for the type Matriks <br></br>
@@ -32,6 +33,7 @@ public class Matriks {
         zeroRows = 0;
         iInitial = 0;
         justDeletedAllZeroRow = false;
+        justSwappedRow = false;
         isHaveAnswer = true;
     }
 
@@ -94,7 +96,7 @@ public class Matriks {
         // Baris r dikurangi k kali baris s
         if (r != s && k != 0){
             System.out.println();
-            System.out.println(String.format("Baris %d dikurangi oleh baris %d dikali %.1f" , r, k, s));
+            System.out.println(String.format("Baris %d dikurangi oleh %.2f kali baris %d" , r, k, s));
             for (int j = 0; j < this.jEff; j++){
                 this.Mat[r][j] -= k *this.Mat[s][j];
             }
@@ -145,6 +147,9 @@ public class Matriks {
         //System.out.println("");
         //System.out.println("After swapRow");
         //cetakMatriks();
+        System.out.println(String.format("\nTukar baris %d dengan %d", row1, row2));
+        cetakMatriks();
+        this.justSwappedRow = true;
     }
 
     void sort(){
@@ -164,10 +169,12 @@ public class Matriks {
         // Menjadikan elemen baris paling kiri bernilai satu 
         // dengan membagi baris dengan konstanta yang sesuai
         float k = findFirstNonZeroInRow(r, c);
-        if (k != 0){
+        if (k != 0 && k!= 1){
             for (int j = c; j < this.jEff; j++){
                 this.Mat[r][j] /= k;
             }
+            System.out.println(String.format("\nBagi baris %d dengan %.2f", r, k));
+            cetakMatriks();
         }
     }
 
@@ -201,7 +208,11 @@ public class Matriks {
         for (int i = 0; i < this.iEff; i++){
             makeLeftOne(i, i);
             for (int ii = i + 1; ii < this.iEff; ii++){
-                //swapIfFirstRowIsZero(i,ii);
+                swapIfFirstRowIsZero(i,i);
+                if (this.justSwappedRow){
+                    this.justSwappedRow = false;
+                    ii = i + 1;
+                }
                 substractRow(ii, i, this.Mat[ii][i]);
                 while (this.justDeletedAllZeroRow) {
                     //System.out.println(String.format("first nonzero %d", findFirstNonZeroIndexInRow(i, 0)));
