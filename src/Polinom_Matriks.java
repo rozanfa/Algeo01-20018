@@ -43,7 +43,7 @@ public class Polinom_Matriks extends Matriks{
             for (int j = 0; j< this.iEffxy + 1; j++){
                 if (j == 0) this.matrix.Mat[i][j] = (Double) 1.0;                                                       // kalo di col:1 set 1 aja
                 else if (j != this.iEffxy) this.matrix.Mat[i][j] = (Double) exponent(this.xyMatrice[i][0], j);   // kalo gk di col:1 set x^i
-                else this.matrix.Mat[i][j] = toDouble(this.xyMatrice[i][1]);                                      // kalo di col paling ujung set ke y
+                else this.matrix.Mat[i][j] = this.xyMatrice[i][1];                                      // kalo di col paling ujung set ke y
             }
         }
         this.matrix.iEff = this.iEffxy;
@@ -72,13 +72,13 @@ public class Polinom_Matriks extends Matriks{
         return temp;
     }
 
-    /**
-     * Temporary function to turn a double to a Double
-     */
-    public Double toDouble(double value){
-        Double temp = (Double) value;
-        return temp;
-    }
+    // /**
+    //  * Temporary function to turn a double to a Double
+    //  */
+    // public Double toDouble(double value){
+    //     Double temp = (Double) value;
+    //     return temp;
+    // }
 
     /**
      * Exponents a number a^b and returns it

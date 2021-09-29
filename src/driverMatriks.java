@@ -33,6 +33,7 @@ public class driverMatriks {
                     break;
                 }
                 case 2: {
+                    determinan();
                     break;
                 }
                 case 3: {
@@ -127,6 +128,34 @@ public class driverMatriks {
             }
             case 2: {
                 output = driverBalikanMatriks.metode_adjoint();
+                break;
+            }
+            default : {
+                System.out.println("Input tidak valid");
+            }
+        }
+    }
+
+    public static void determinan(){
+        System.out.println("PILIH METODE");
+        System.out.println("1. Metode kofaktor");
+        System.out.println("2. Metode Gauss-Jordan (Row Reduction)");
+        System.out.println("2. Metode Sarrus");
+        System.out.print("Pilihan : ");
+        Scanner scanner = new Scanner(System.in);
+        int option = scanner.nextInt();
+        System.out.println("");
+        switch (option) {
+            case 1: {
+                output = driverDeterminan.metode_kofaktor();
+                break;
+            }
+            case 2: {
+
+                break;
+            }
+            case 3: {
+
                 break;
             }
             default : {

@@ -1,0 +1,6 @@
+Matriks yang akan dicari determinannya melalui metode kofaktor:
+5.00 2.00 3.00 
+9.00 8.00 7.00 
+1.00 2.00 3.00 
+
+Determinan matriksnya adalah: 40.00
