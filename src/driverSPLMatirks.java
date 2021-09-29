@@ -30,24 +30,31 @@ public class driverSPLMatirks {
             System.out.println("Matriks A :");
             a.cetakMatriks();
 
-            Matriks inversA = Balikan_Matriks.adjoin(a);
+            float detA = Determinan_Matriks.kofaktor(a);
+            if (detA == 0){
+                result += "Determinan matriks = 0\nMatriks tidak mempunyai balikan\nTidak bisa diselesaikan menggunakan metode matriks balikan\n";
+                System.out.println("Determinan matriks = 0\nMatriks tidak mempunyai balikan\nTidak bisa diselesaikan menggunakan metode matriks balikan");
+            }
+            else {
+                Matriks inversA = Balikan_Matriks.adjoin(a);
 
 
-            System.out.println("");
-            System.out.println("Invers Matriks A :");
-            inversA.cetakMatriks();
-
-            Matriks res = new Matriks();
-            res = Matriks.multiplyMatrix(inversA, b);
-            System.out.println("");
-            System.out.println("Matriks hasil perkalian invers A dengan x :");
-            res.cetakMatriks();
-            System.out.println("");
-            result += "Solusi :\n";
-            System.out.println("Solusi :");
-            for (int i = 0; i < res.iEff; i++){
-                result += String.format("x[%d] = %f\n", i+1, res.Mat[i][0]);
-                System.out.println(String.format("x[%d] = %f", i+1, res.Mat[i][0]));
+                System.out.println("");
+                System.out.println("Invers Matriks A :");
+                inversA.cetakMatriks();
+    
+                Matriks res = new Matriks();
+                res = Matriks.multiplyMatrix(inversA, b);
+                System.out.println("");
+                System.out.println("Matriks hasil perkalian invers A dengan x :");
+                res.cetakMatriks();
+                System.out.println("");
+                result += "Solusi :\n";
+                System.out.println("Solusi :");
+                for (int i = 0; i < res.iEff; i++){
+                    result += String.format("x[%d] = %f\n", i+1, res.Mat[i][0]);
+                    System.out.println(String.format("x[%d] = %f", i+1, res.Mat[i][0]));
+                }
             }
         }
         else {
