@@ -88,9 +88,10 @@ public class SPL_Matriks extends Matriks{
     void printManySolution(){
         result += "Solusi banyak\n";
         System.out.println("Solusi banyak");
+        char varName[] = {'o','p','q', 'r','s','t','u','v','w','x','y','z','a','b','c','d','e','f','g','h','i','j','k','l','m','n'};
         for (int i=0; i<this.iEff; i++){
-            char varName = 'p';
-            for (int k=0; k<i ;k++) varName ++;
+            //int varNameCounter = 0;
+            //for (int k=0; k<i ;k++) varName ++;
             int f = findFirstNonZeroIndexInRow(i, 0);
             if (this.Mat[i][f] != 1) {
                 makeLeftOne(i, f);
@@ -100,23 +101,25 @@ public class SPL_Matriks extends Matriks{
                 if (this.Mat[i][jj] != 0){
                     float kof = -1 * this.Mat[i][jj];
                     if (kof < 0){
-                        res += String.format("- %f%c ", -1*kof, varName);
+                        res += String.format("- %f%c ", -1*kof, varName[jj]);
                     }
                     else {
-                        res += String.format("+ %f%c ", kof, varName);
+                        res += String.format("+ %f%c ", kof, varName[jj]);
                     }
                 }
-                varName ++;
+                //varName ++;
             }
             result += res + "\n";
             System.out.println(res);
         }
-        char varName = 'p';
+       // char varName = 'p';
+        int c = this.iEff;
         for (int j = this.iEff; j < this.jEff - 1; j++){
-            for (int k=0; k<this.iEff-1 ;k++) varName ++;
-            result += String.format("x[%d] = %c\n", j+1, varName);
-            System.out.println(String.format("x[%d] = %c", j+1, varName));
-            varName ++;
+            //for (int k=0; k<this.iEff-1 ;k++) varName ++;
+            result += String.format("x[%d] = %c\n", j+1, varName[c]);
+            System.out.println(String.format("x[%d] = %c", j+1, varName[c]));
+            c++;
+            //varName ++;
         }
         /*
         char var[] = {'r','s','t','u','v','w','x','y','z','a'};
