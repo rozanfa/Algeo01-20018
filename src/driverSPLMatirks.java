@@ -30,7 +30,7 @@ public class driverSPLMatirks {
             System.out.println("Matriks A :");
             a.cetakMatriks();
 
-            float detA = Determinan_Matriks.kofaktor(a);
+            Double detA = Determinan_Matriks.kofaktor(a);
             if (detA == 0){
                 result += "Determinan matriks = 0\nMatriks tidak mempunyai balikan\nTidak bisa diselesaikan menggunakan metode matriks balikan\n";
                 System.out.println("Determinan matriks = 0\nMatriks tidak mempunyai balikan\nTidak bisa diselesaikan menggunakan metode matriks balikan");
@@ -73,7 +73,7 @@ public class driverSPLMatirks {
         System.out.println("Masukkan SPL dalam bentuk matriks augmented");
         main.isiMatriks();
         result += main.getMatriksString() + "\n";
-        Float res[] = new Float[15];
+        Double res[] = new Double[15];
         if (main.iEff == (main.jEff - 1)){
             Matriks cons = new Matriks();
             cons.iEff = main.iEff;
@@ -91,7 +91,7 @@ public class driverSPLMatirks {
                 }
             }
             System.out.println("");
-            Float detVar = Determinan_Matriks.kofaktor(var.copy());
+            Double detVar = Determinan_Matriks.kofaktor(var.copy());
             System.out.println(String.format("Determinan matriks A : %f" , detVar));
             System.out.println("");
 
@@ -104,7 +104,7 @@ public class driverSPLMatirks {
                     //System.out.println("mat var");
                     //var.cetakMatriks();
                     //System.out.println("");
-                    Float detVarCopy = Determinan_Matriks.kofaktor(varCopy);
+                    Double detVarCopy = Determinan_Matriks.kofaktor(varCopy);
                     System.out.println(String.format("Determinan matriks A[%d] : %f" ,j + 1 , detVarCopy));
                     res[j] =  detVarCopy / detVar;
                     System.out.println(String.format("x[%d] = %f / %f = %f", j + 1, detVarCopy,detVar, res[j]));

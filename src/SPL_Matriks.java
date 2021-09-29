@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class SPL_Matriks extends Matriks{
@@ -10,7 +11,7 @@ public class SPL_Matriks extends Matriks{
         System.out.println(String.format("Masukkan matriks %d x %d :", this.iEff, this.jEff));
         for (int i = 0; i < this.iEff; i++){
             for (int j = 0; j < this.jEff; j++){
-                this.Mat[i][j] = scanner.nextFloat();
+                this.Mat[i][j] = scanner.nextDouble();
             }
             deleteRowIfRowAllZero(i);
             if (this.justDeletedAllZeroRow) {
@@ -32,10 +33,11 @@ public class SPL_Matriks extends Matriks{
                 String fileName = scanner.nextLine();
                 File file = new File(fileName);
                 fileScanner = new Scanner(file);
+                fileScanner.useLocale(Locale.US);
                 if (fileScanner.hasNext()){
                     for (int i = 0; i < this.iEff; i++){
                         for (int j = 0; j < this.jEff; j++){
-                            this.Mat[i][j] = fileScanner.nextFloat();
+                            this.Mat[i][j] = fileScanner.nextDouble();
                         }
                         deleteRowIfRowAllZero(i);
                         if (this.justDeletedAllZeroRow) {
@@ -77,8 +79,8 @@ public class SPL_Matriks extends Matriks{
         result += "Solusi unik\n";
         System.out.println("Solusi unik");
         for (int i = 0; i < this.iEff; i++){
-            result += String.format("x[%d] = %.2f\n", i+1, this.Mat[i][this.jEff-1]);
-            System.out.println(String.format("x[%d] = %.2f", i+1, this.Mat[i][this.jEff-1]));
+            result += String.format("x[%d] = %f\n", i+1, this.Mat[i][this.jEff-1]);
+            System.out.println(String.format("x[%d] = %f", i+1, this.Mat[i][this.jEff-1]));
         }
     }
 
@@ -99,7 +101,7 @@ public class SPL_Matriks extends Matriks{
             String res = String.format("x[%d] = %f ", f+1, this.Mat[i][this.jEff-1]) ;
             for (int jj = f + 1; jj<this.jEff-1; jj++){ 
                 if (this.Mat[i][jj] != 0){
-                    float kof = -1 * this.Mat[i][jj];
+                    Double kof = -1 * this.Mat[i][jj];
                     if (kof < 0){
                         res += String.format("- %f%c ", -1*kof, varName[jj]);
                     }
@@ -124,14 +126,14 @@ public class SPL_Matriks extends Matriks{
         /*
         char var[] = {'r','s','t','u','v','w','x','y','z','a'};
         int maxVar = this.jEff - this.iEff + 1;
-        Float res[] = new Float[10];
+        Double res[] = new Double[10];
         boolean isResConstant[] = new boolean[10];
         String stringRes[] = new String[10];
         int p = this.jEff - 2;
         int j = 0;
         
         for (int i=0; i<this.iEff; i++){
-            res[i] = (float) 0;
+            res[i] = (Double) 0;
             while (this.Mat[i][j] != 1 && j < jEff - 2){
                 j++;
                 maxVar++;
@@ -197,7 +199,7 @@ public class SPL_Matriks extends Matriks{
     void printUniqueSolution_gauss(){
         result += "Solusi unik\n";
         System.out.println("Solusi unik");
-        Float res[] = new Float[15];
+        Double res[] = new Double[15];
         int p = this.iEff - 1;
         for (int i=this.iEff-1; i>=0; i--){
             res[i] = this.Mat[i][this.jEff-1]; 

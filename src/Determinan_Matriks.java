@@ -1,11 +1,11 @@
 public class Determinan_Matriks extends Matriks {
     
 
-    static Float kofaktor (Matriks mat){
+    static Double kofaktor (Matriks mat){
         if (mat.iEff == 1) return mat.matrix[0][0];
         else if (mat.iEff == 2) return ((mat.matrix[0][0] * mat.matrix[1][1]) - (mat.matrix[0][1] * mat.matrix[1][0]));
         else {
-            Float tempDet = 0.0f;
+            Double tempDet = (Double) 0.0;
             int colTraversal, i, j, colWriteHead;
 
             Matriks subMatrix = new Matriks();
@@ -41,7 +41,7 @@ public class Determinan_Matriks extends Matriks {
     	return x;
     }
     
-    static void substractRow(Matriks mat, int r, int s, Float k, Float h){
+    static void substractRow(Matriks mat, int r, int s, Double k, Double h){
         for (int j = 0; j < mat.jEff; j++){
             mat.Mat[r][j] -= k/h *mat.Mat[s][j];
         }

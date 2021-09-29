@@ -26,7 +26,7 @@ public class Extended extends Matriks{
         mat.iInitial = baris;
         for (i = 0; i < baris; i++){
             for (j = 0; j < kolom; j++){
-                mat.matrix[i][j] = scanner.nextFloat();
+                mat.matrix[i][j] = scanner.nextDouble();
             }
             deleteRowIfRowAllZero(mat, i);
         }
@@ -56,7 +56,7 @@ public class Extended extends Matriks{
      * Substracts a row from a specificed matrix. <br> </br>
      * <b>row(r) = row(r) - (k * row(s))</b>
      */
-    static void substractRow(Matriks mat, int r, int s, Float k){
+    static void substractRow(Matriks mat, int r, int s, Double k){
         // Baris r dikurangi k kali baris s
         for (int j = 0; j < mat.jEff; j++){
             mat.matrix[r][j] -= k * mat.matrix[s][j];
@@ -74,7 +74,7 @@ public class Extended extends Matriks{
             for (int i = r; i < mat.iEff; i++) {
                 if (mat.matrix[i][s] != 0){
                     for (int j = 0; j < mat.jEff; j++){
-                        Float temp = mat.matrix[r][j];
+                        Double temp = mat.matrix[r][j];
                         mat.matrix[r][j] = mat.matrix[i][j];
                         mat.matrix[i][j] = temp;
                     }
@@ -84,11 +84,11 @@ public class Extended extends Matriks{
     }
 
     /**
-     * makes the left most non-zero float in the row a 0 <br></br>
+     * makes the left most non-zero Double in the row a 0 <br></br>
      * <b> Ex: {0, 3, 6} becomes {0, 1, 2} </b>
      */
     static void makeLeftOne(Matriks mat, int r, int c){
-        float k = findFirstNonZeroInRow(mat, r, c);
+        Double k = findFirstNonZeroInRow(mat, r, c);
         if (k != 0){
             for (int j = c; j < mat.jEff; j++){
                 mat.matrix[r][j] /= k;
@@ -100,8 +100,8 @@ public class Extended extends Matriks{
      * Finds the first element in row  starting from ELMT(r,c) that is not Zero (ELMT != 0) <br></br>
      * @return the first non-zero element
      */
-    static float findFirstNonZeroInRow(Matriks mat, int r, int c){
-        float k = (float) 0;
+    static Double findFirstNonZeroInRow(Matriks mat, int r, int c){
+        Double k = (Double) 0.0;
         if (mat.matrix[r][c] != 0){
             k = mat.matrix[r][c];
         }
@@ -267,7 +267,7 @@ public class Extended extends Matriks{
 
 
     static void printUniqueSolution_gauss(Matriks mat){
-        Float res[] = new Float[10];
+        Double res[] = new Double[10];
         int p = mat.iEff - 1;
         for (int i=mat.iEff-1; i>=0; i--){
             res[i] = mat.Mat[i][mat.jEff-1]; 

@@ -18,8 +18,8 @@ public class Balikan_Matriks extends Matriks {
         inversed.iInitial = mat.iInitial; // jujur masih gatau iIinitial buat apaan mon apaan sih ini
         for (int i = 0; i < mat.iEff; i++){
             for (int j = 0; j < mat.jEff; j++){
-                if (i == j) inversed.matrix[i][j] = (float)1.0;
-                else inversed.matrix[i][j] = (float)0.0;
+                if (i == j) inversed.matrix[i][j] = (Double)1.0;
+                else inversed.matrix[i][j] = (Double)0.0;
             }
         }
 
@@ -32,7 +32,7 @@ public class Balikan_Matriks extends Matriks {
     static Matriks adjoin(Matriks mat){
         Matriks temp = new Matriks();
         temp = Extended.getAdjoint(mat);
-        float det = Determinan_Matriks.kofaktor(mat);
+        Double det = Determinan_Matriks.kofaktor(mat);
         
         for (int i = 0; i < temp.iEff; i++){
             for(int j = 0; j < temp.jEff; j++){
@@ -58,7 +58,7 @@ public class Balikan_Matriks extends Matriks {
      * <b>row(r) = row(r) - (k * row(s))</b><br></br>
      * Custom for Balikan_Matriks: checks for mat1, performs the same operation for mat2
      */
-    static void substractRow(Matriks mat1, Matriks mat2, int r, int s, Float k){
+    static void substractRow(Matriks mat1, Matriks mat2, int r, int s, Double k){
         // Baris r dikurangi k kali baris s
         for (int j = 0; j < mat1.jEff; j++){
             mat1.matrix[r][j] -= k * mat1.matrix[s][j];
@@ -82,11 +82,11 @@ public class Balikan_Matriks extends Matriks {
             for (int i = r; i < mat1.iEff; i++) {
                 if (mat1.matrix[i][s] != 0){
                     for (int j = 0; j < mat1.jEff; j++){
-                        Float temp = mat1.matrix[r][j];
+                        Double temp = mat1.matrix[r][j];
                         mat1.matrix[r][j] = mat1.matrix[i][j];
                         mat1.matrix[i][j] = temp;
 
-                        Float tempMat2 = mat2.matrix[r][j];
+                        Double tempMat2 = mat2.matrix[r][j];
                         mat2.matrix[r][j] = mat2.matrix[i][j];
                         mat2.matrix[i][j] = tempMat2;
                     }
@@ -98,12 +98,12 @@ public class Balikan_Matriks extends Matriks {
     }
 
     /**
-     * makes the left most non-zero float in the row a 0 <br></br>
+     * makes the left most non-zero Double in the row a 0 <br></br>
      * <b> Ex: {0, 3, 6} becomes {0, 1, 2} </b> <br></br>
      * Custom for Balikan_Matriks: checks for mat1, performs the same op for mat2
      */
     static void makeLeftOne(Matriks mat1, Matriks mat2, int r, int c){
-        float k = Extended.findFirstNonZeroInRow(mat1, r, c);
+        Double k = Extended.findFirstNonZeroInRow(mat1, r, c);
         if (k != 0){
             for (int j = 0; j < mat1.jEff; j++){
                 mat1.matrix[r][j] /= k;

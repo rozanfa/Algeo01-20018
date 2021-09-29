@@ -7,10 +7,10 @@ public class Regresi_Matriks extends Matriks {
 		   for (int i=0;i<mat1.iEff;i++) {
 			   for (int j=0;j<mat1.jEff;j++) {
 				   if (i==0 && j==0) {
-					   mat1.Mat[i][j]=(float) mat.iEff;
+					   mat1.Mat[i][j]= (double) mat.iEff;
 				   }
 				   else {
-					   mat1.Mat[i][j]=(float) 0;
+					   mat1.Mat[i][j]=(Double) 0.0;
 				   }
 			   }
 		   }

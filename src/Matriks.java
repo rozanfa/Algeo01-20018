@@ -1,11 +1,12 @@
 import java.io.File;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Matriks {
     
     String name;
-    Float Mat[][] = new Float[15][15];
-    Float matrix[][]; 
+    Double Mat[][] = new Double[15][15];
+    Double matrix[][]; 
 
     int iEff = 0;
     int jEff = 0;
@@ -21,7 +22,7 @@ public class Matriks {
      * Constructor for the type Matriks <br></br>
      * 
      * Contains: <ul> 
-     * <li> float matrix[10][10]</li>
+     * <li> Double matrix[10][10]</li>
      * <li> int iEff </li>
      * <li> int jEff </li>
      * <li> int zeroRows </li>
@@ -78,7 +79,7 @@ public class Matriks {
         System.out.println(String.format("Masukkan matriks %d x %d :", this.iEff, this.jEff));
         for (int i = 0; i < this.iInitial; i++){
             for (int j = 0; j < this.jEff; j++){
-                this.Mat[i][j] = scanner.nextFloat();
+                this.Mat[i][j] = scanner.nextDouble();
             }
         }
     }
@@ -94,10 +95,11 @@ public class Matriks {
                 String fileName = scanner.nextLine();
                 File file = new File(fileName);
                 fileScanner = new Scanner(file);
+                fileScanner.useLocale(Locale.US);
                 if (fileScanner.hasNext()){
                     for (int i = 0; i < this.iInitial; i++){
                         for (int j = 0; j < this.jEff; j++){
-                            this.Mat[i][j] = fileScanner.nextFloat();
+                            this.Mat[i][j] = fileScanner.nextDouble();
                         }
                         fileScanner.nextLine();
                     }
@@ -161,7 +163,7 @@ public class Matriks {
         return matriksString;
     }
 
-    public void substractRow(int r, int s, Float k){
+    public void substractRow(int r, int s, Double k){
         // Baris r dikurangi k kali baris s
         if (r != s && k != 0){
             System.out.println();
@@ -188,7 +190,7 @@ public class Matriks {
             for (int i = r; i < this.iEff; i++) {
                 if (this.Mat[i][s] != 0){
                     for (int j = 0; j < this.jEff; j++){
-                        Float temp = this.Mat[r][j];
+                        Double temp = this.Mat[r][j];
                         this.Mat[r][j] = this.Mat[i][j];
                         this.Mat[i][j] = temp;
                     }
@@ -202,7 +204,7 @@ public class Matriks {
         //System.out.println(String.format("%d %d", row1, row2));
         //System.out.println("Before swapRow");
         //cetakMatriks();
-        Float temp;
+        Double temp;
         for (int j = 0; j < this.jEff; j++){
             //System.out.println(String.format("%f, %f", this.Mat[row1][j], this.Mat[row2][j]));
             temp = this.Mat[row2][j];
@@ -237,7 +239,7 @@ public class Matriks {
     public void makeLeftOne(int r, int c){
         // Menjadikan elemen baris paling kiri bernilai satu 
         // dengan membagi baris dengan konstanta yang sesuai
-        float k = findFirstNonZeroInRow(r, 0);
+        Double k = findFirstNonZeroInRow(r, 0);
         if (k != 0 && k!= 1){
             for (int j = 0; j < this.jEff; j++){
                 this.Mat[r][j] /= k;
@@ -247,8 +249,8 @@ public class Matriks {
         }
     }
 
-    public float findFirstNonZeroInRow(int r, int c){
-        float k = (float) 0;
+    public Double findFirstNonZeroInRow(int r, int c){
+        Double k = (Double) 0.0;
             for (int j = 0; j < this.jEff; j++){
                 
                 if (this.Mat[r][j] != 0){
@@ -285,8 +287,11 @@ public class Matriks {
                 substractRow(ii, i, this.Mat[ii][i]);
                 while (this.justDeletedAllZeroRow) {
                     //System.out.println(String.format("first nonzero %d", findFirstNonZeroIndexInRow(i, 0)));
-                    if (ii == this.iEff){
+                    while (ii >= this.iEff){
                         ii--;
+                    }
+                    while (i >= this.iEff){
+                        i--;
                     }
                     substractRow(ii, i, this.Mat[ii][findFirstNonZeroIndexInRow(i, 0)]);
                     this.justDeletedAllZeroRow = false;
@@ -303,8 +308,11 @@ public class Matriks {
                 substractRow(ii, i, this.Mat[ii][findFirstNonZeroIndexInRow(i, 0)]);
                 while (this.justDeletedAllZeroRow) {
                     //System.out.println(String.format("first nonzero %d", findFirstNonZeroIndexInRow(i, 0)));
-                    if (ii == this.iEff){
+                    while (ii >= this.iEff){
                         ii--;
+                    }
+                    while (i >= this.iEff){
+                        i--;
                     }
                     substractRow(ii, i, this.Mat[ii][findFirstNonZeroIndexInRow(i, 0)]);
                     this.justDeletedAllZeroRow = false;
@@ -318,8 +326,11 @@ public class Matriks {
                 substractRow(ii, i, this.Mat[ii][findFirstNonZeroIndexInRow(i, 0)]);
                 while (this.justDeletedAllZeroRow) {
                     //System.out.println(String.format("first nonzero %d", findFirstNonZeroIndexInRow(i, 0)));
-                    if (ii == this.iEff){
+                    while (ii >= this.iEff){
                         ii--;
+                    }
+                    while (i >= this.iEff){
+                        i--;
                     }
                     substractRow(ii, i, this.Mat[ii][findFirstNonZeroIndexInRow(i, 0)]);
                     this.justDeletedAllZeroRow = false;
@@ -366,7 +377,7 @@ public class Matriks {
         
         for (i=0; i<m1.iEff; i++){
             for (j=0; j<m2.jEff; j++){
-                m3.Mat[i][j] = (float) 0;
+                m3.Mat[i][j] = (Double) 0.0;
                 for (k=0; k<m1.jEff; k++){
                     //System.out.println(String.format("i %d j %d k %d",i,j,k));
                     m3.Mat[i][j] += m1.Mat[i][k] * m2.Mat[k][j];
