@@ -33,11 +33,10 @@ public class driverMatriks {
                     break;
                 }
                 case 2: {
-
                     break;
                 }
                 case 3: {
-
+                    matriks_balikan();
                     break;
                 }
                 case 4: {
@@ -61,9 +60,10 @@ public class driverMatriks {
                 System.out.println("1. Ya");
                 System.out.println("2. Tidak");
                 System.out.print("Pilihan : ");
-                option = scanner.nextInt();
+                scanner = new Scanner(System.in);
+                int saveOption = scanner.nextInt();
                 System.out.println("");
-                switch (option) {
+                switch (saveOption) {
                     case 1: {
                         saveResult();
                         break;
@@ -111,9 +111,31 @@ public class driverMatriks {
             }
         }
     }
+    
+    public static void matriks_balikan(){
+        System.out.println("PILIH METODE");
+        System.out.println("1. Metode Gauss-Jordan");
+        System.out.println("2. Metode adjoin");
+        System.out.print("Pilihan : ");
+        Scanner scanner = new Scanner(System.in);
+        int option = scanner.nextInt();
+        System.out.println("");
+        switch (option) {
+            case 1: {
+                output = driverBalikanMatriks.metode_gaussJordan();
+                break;
+            }
+            case 2: {
+                output = driverBalikanMatriks.metode_adjoint();
+                break;
+            }
+            default : {
+                System.out.println("Input tidak valid");
+            }
+        }
+    }
 
-
-
+    
     static public void saveResult(){
         // Menyimpan hasil di folder output dengan nama file ditentukan pengguna
 

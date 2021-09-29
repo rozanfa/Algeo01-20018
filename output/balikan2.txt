@@ -1,0 +1,9 @@
+Balikan matriks melalui metode adjoin:
+5.00 2.00 3.00 
+9.00 8.00 7.00 
+1.00 2.00 3.00 
+
+Matriks balikannya merupakan:
+0.25 -0.00 -0.25 
+-0.50 0.30 -0.20 
+0.25 -0.20 0.55 
