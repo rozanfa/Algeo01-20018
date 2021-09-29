@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Matriks {
     
     String name;
-    Double Mat[][] = new Double[15][15];
+    Double Mat[][] = new Double[25][25];
     Double matrix[][]; 
 
     int iEff = 0;

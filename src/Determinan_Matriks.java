@@ -42,13 +42,16 @@ public class Determinan_Matriks extends Matriks {
     }
     
     static void substractRow(Matriks mat, int r, int s, Double k, Double h){
-        for (int j = 0; j < mat.jEff; j++){
-            mat.Mat[r][j] -= k/h *mat.Mat[s][j];
+    	if (r != s && k != 0){
+            System.out.println();
+            System.out.println(String.format("Baris %d dikurangi oleh %.2f kali baris %d" , r, k, s));
+            for (int j = 0; j < mat.jEff; j++){
+                mat.Mat[r][j] -= k/h *mat.Mat[s][j];
+            }
+            mat.deleteRowIfRowAllZero(r);
+            mat.cetakMatriks();
         }
-        mat.deleteRowIfRowAllZero(r);
-        System.out.println();
-        System.out.println(String.format("%d %d %.1f", r, s, k));
-        mat.cetakMatriks();
+
     }
     
     static void RowReduction (Matriks mat) {
@@ -118,8 +121,9 @@ public class Determinan_Matriks extends Matriks {
     		
     		for (i = 0; i <3; i++){
                 for (j = 0; j <5; j++){
-                	
+                    System.out.print(matbaru.Mat[i][j]+" ");
                 }
+                System.out.println();
     		}
     		
     		System.out.println("");
@@ -152,4 +156,6 @@ public class Determinan_Matriks extends Matriks {
     }
     
 }
+
+
 
