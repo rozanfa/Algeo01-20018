@@ -305,4 +305,22 @@ public class Extended extends Matriks{
             System.out.println("Solusi tidak ada");
         }
     }
+
+    public static String getMatriksString(Matriks mat){
+        String matriksString = new String();
+        int i,j;
+        for (i = 0; i < mat.iEff; i++){
+            for (j = 0; j < mat.jEff; j++){
+                matriksString += String.format("%2.2f ", mat.matrix[i][j]);
+            }
+            matriksString += "\n";
+        }
+        for (i = 0; i < mat.zeroRows; i++){
+            for (j = 0; j < mat.jEff; j++){
+                matriksString += String.format("%2.2f ", 0.00);
+            }
+            matriksString += "\n";
+        }
+        return matriksString;
+    }
 }
