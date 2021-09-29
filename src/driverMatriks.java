@@ -115,9 +115,16 @@ public class driverMatriks {
 
 
     static public void saveResult(){
+        // Menyimpan hasil di folder output dengan nama file ditentukan pengguna
+
+        /* WAKTU JALANIN PROGRAM, PASTIIN TERMINAL ADA DI FOLDER UTAMA, BUKAN DI FOLDER src */
+
         System.out.print("Masukkan nama file yang ingin dibuat: ");
         Scanner scanner = new Scanner(System.in);
         String fileName = scanner.nextLine();
+
+        /* PASTIIN TERMINAL ADA DI FOLDER UTAMA, BUKAN DI FOLDER src */
+
         File file = new File("output\\" + fileName + ".txt");
         boolean succeed;
 
@@ -139,6 +146,9 @@ public class driverMatriks {
         }
 
         try {
+
+            /* PASTIIN TERMINAL ADA DI FOLDER UTAMA, BUKAN DI FOLDER src */
+
             FileWriter fileWriter = new FileWriter("output\\" + fileName + ".txt");
             fileWriter.write(output);
             fileWriter.close();
