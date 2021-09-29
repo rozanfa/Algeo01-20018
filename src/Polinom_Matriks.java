@@ -36,6 +36,18 @@ public class Polinom_Matriks extends Matriks{
     }
 
     /**
+     * returns the points as a string using (x,y) format
+     */
+    public String getPoints(){
+        String temp = "";
+        for (int i = 0; i < iEffxy; i++){
+            temp += "(" + this.xyMatrice[i][0] + "," + this.xyMatrice[i][1] + ")\n";
+        }
+        return temp;
+    }
+
+
+    /**
      * fills the points given to the matrice
      */
     public void fillToMatrix(){
@@ -87,6 +99,25 @@ public class Polinom_Matriks extends Matriks{
         double temp = 1;
         for (int i = 0; i < b; i++){
             temp *= a;
+        }
+        return temp;
+    }
+
+
+    /**
+     * returns a string filled with the equation in the form  of:
+     * <ul>
+     *  <li> x[0] = ...
+     *  <li> x[1] = ...
+     * <li> ...
+     * <li> x[n] = ...
+     * </ul>
+     */
+    public String getEquation(){
+        String temp = "";
+        for (int i = 0; i < eqLength; i++){
+            temp += "x[" + i + "] = " + String.format("%.4f", equation[i]);
+            temp += "\n";
         }
         return temp;
     }

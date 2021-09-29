@@ -41,7 +41,7 @@ public class driverMatriks {
                     break;
                 }
                 case 4: {
-
+                    output = driverPolinom.polinom();
                     break;
                 }
                 case 5: {
