@@ -1,4 +1,58 @@
+import java.io.File;
+import java.util.Scanner;
+
 public class SPL_Matriks extends Matriks{
+
+    @Override
+    void isiMatriks_dariKeyboard(){
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(String.format("Masukkan matriks %d x %d :", this.iEff, this.jEff));
+        for (int i = 0; i < this.iEff; i++){
+            for (int j = 0; j < this.jEff; j++){
+                this.Mat[i][j] = scanner.nextFloat();
+            }
+            deleteRowIfRowAllZero(i);
+            if (this.justDeletedAllZeroRow) {
+                i--;
+                this.justDeletedAllZeroRow = false;
+            }
+        }
+    }
+
+    @Override
+    void isiMatriks_dariFile(){
+        Scanner scanner = new Scanner(System.in);
+        Scanner fileScanner = null;
+        boolean isFileAvailable = false;
+        
+        while (!isFileAvailable) {
+            try {
+                System.out.print("Masukkan path file: ");
+                String fileName = scanner.nextLine();
+                File file = new File(fileName);
+                fileScanner = new Scanner(file);
+                if (fileScanner.hasNext()){
+                    for (int i = 0; i < this.iEff; i++){
+                        for (int j = 0; j < this.jEff; j++){
+                            this.Mat[i][j] = fileScanner.nextFloat();
+                        }
+                        deleteRowIfRowAllZero(i);
+                        if (this.justDeletedAllZeroRow) {
+                            i--;
+                            this.justDeletedAllZeroRow = false;
+                        }
+                        fileScanner.nextLine();
+                    }
+                }
+                isFileAvailable = true;
+            } catch (Exception ex) {
+                System.out.println("Error : Tidak ditemukan file. " + ex.getMessage());
+                isFileAvailable = false;
+            }
+        }
+    }
+
 
     boolean isSPLHaveSolution(){
         boolean yes = false;
@@ -20,8 +74,10 @@ public class SPL_Matriks extends Matriks{
     }
 
     void printUniqueSolution_gauss_jordan(){
+        result += "Solusi unik\n";
         System.out.println("Solusi unik");
         for (int i = 0; i < this.iEff; i++){
+            result += String.format("x[%d] = %.2f\n", i+1, this.Mat[i][this.jEff-1]);
             System.out.println(String.format("x[%d] = %.2f", i+1, this.Mat[i][this.jEff-1]));
         }
     }
@@ -30,6 +86,7 @@ public class SPL_Matriks extends Matriks{
 
     
     void printManySolution(){
+        result += "Solusi banyak\n";
         System.out.println("Solusi banyak");
         for (int i=0; i<this.iEff; i++){
             char varName = 'p';
@@ -51,11 +108,13 @@ public class SPL_Matriks extends Matriks{
                 }
                 varName ++;
             }
+            result += res + "\n";
             System.out.println(res);
         }
         char varName = 'p';
         for (int j = this.iEff; j < this.jEff - 1; j++){
             for (int k=0; k<this.iEff-1 ;k++) varName ++;
+            result += String.format("x[%d] = %c\n", j+1, varName);
             System.out.println(String.format("x[%d] = %c", j+1, varName));
             varName ++;
         }
@@ -133,6 +192,7 @@ public class SPL_Matriks extends Matriks{
 
 
     void printUniqueSolution_gauss(){
+        result += "Solusi unik\n";
         System.out.println("Solusi unik");
         Float res[] = new Float[15];
         int p = this.iEff - 1;
@@ -144,6 +204,7 @@ public class SPL_Matriks extends Matriks{
             p--;
         }
         for (int i=0; i < this.iEff; i++){
+            result += String.format("x[%d] = %f\n", i+1, res[i]);
             System.out.println(String.format("x[%d] = %f", i+1, res[i]));
         }
     }
@@ -165,6 +226,7 @@ public class SPL_Matriks extends Matriks{
             }
         }
         else {
+            result += "Solusi tidak ada\n";
             System.out.println("Solusi tidak ada");
         }
     }
@@ -186,7 +248,10 @@ public class SPL_Matriks extends Matriks{
             }
         }
         else {
+            result += "Solusi tidak ada\n";
             System.out.println("Solusi tidak ada");
         }
     }
+
+
 }

@@ -133,7 +133,7 @@ public class Balikan_Matriks extends Matriks {
 
     /**
      * Performs OBE towards mat1, and does the same operation towards mat2 <br></br>
-     * Prerequisite: size of mat1 == size of mat2 <br></br>
+     * Prerequisite: size of mat1 =a= size of mat2 <br></br>
      * Custom for Balikan_Matriks
      */
     static void obe_gauss_jordan(Matriks mat1, Matriks mat2){

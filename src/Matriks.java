@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Matriks {
@@ -15,6 +14,8 @@ public class Matriks {
     boolean justDeletedAllZeroRow = false;
     boolean isHaveAnswer = true; //pengen banget gw fix ke hasAnswer aeugh // sorry bas rip inggris aeugh
     boolean justSwappedRow = false;
+
+    public String result = new String();
 
     /**
      * Constructor for the type Matriks <br></br>
@@ -47,7 +48,6 @@ public class Matriks {
         System.out.print("Masukkan kolom matriks: ");
         m = scanner.nextInt();
         
-        int i,j;
         this.iEff = n;
         this.jEff = m;
         this.iInitial = n;
@@ -75,37 +75,38 @@ public class Matriks {
 
     void isiMatriks_dariKeyboard(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println(String.format("Masukkan matriks %d x %d :", n, m));
-        for (int i = 0; i < this.iEff; i++){
+        System.out.println(String.format("Masukkan matriks %d x %d :", this.iEff, this.jEff));
+        for (int i = 0; i < this.iInitial; i++){
             for (int j = 0; j < this.jEff; j++){
                 this.Mat[i][j] = scanner.nextFloat();
             }
-            deleteRowIfRowAllZero(i);
         }
     }
 
     void isiMatriks_dariFile(){
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Masukkan lokasi file: ");
-        String fileName = scanner.nextLine();
         Scanner fileScanner = null;
-
-        try {
-            File file = new File(fileName);
-            fileScanner = new Scanner(file);
-            if (fileScanner.hasNext()){
-                for (int i = 0; i < this.iEff; i++){
-                    for (int j = 0; j < this.jEff; j++){
-                        this.Mat[i][j] = fileScanner.nextFloat();
+        boolean isFileAvailable = false;
+        
+        while (!isFileAvailable) {
+            try {
+                System.out.print("Masukkan path file: ");
+                String fileName = scanner.nextLine();
+                File file = new File(fileName);
+                fileScanner = new Scanner(file);
+                if (fileScanner.hasNext()){
+                    for (int i = 0; i < this.iInitial; i++){
+                        for (int j = 0; j < this.jEff; j++){
+                            this.Mat[i][j] = fileScanner.nextFloat();
+                        }
+                        fileScanner.nextLine();
                     }
-                    fileScanner.nextLine();
                 }
+                isFileAvailable = true;
+            } catch (Exception ex) {
+                System.out.println("Error : Tidak ditemukan file. " + ex.getMessage());
+                isFileAvailable = false;
             }
-        } catch (Exception ex) {
-            System.out.println("Error : Tidak ditemukan file " + ex.getMessage());
-        } finally {
-            if (fileScanner != null)
-                fileScanner.close();
         }
     }
 
@@ -140,7 +141,24 @@ public class Matriks {
             }
             System.out.println();
         }
-        
+    }
+
+    public String getMatriksString(){
+        String matriksString = new String();
+        int i,j;
+        for (i = 0; i < this.iEff; i++){
+            for (j = 0; j < this.jEff; j++){
+                matriksString += String.format("%2.2f ", this.Mat[i][j]);
+            }
+            matriksString += "\n";
+        }
+        for (i = 0; i < this.zeroRows; i++){
+            for (j = 0; j < this.jEff; j++){
+                matriksString += String.format("%2.2f ", 0.00);
+            }
+            matriksString += "\n";
+        }
+        return matriksString;
     }
 
     public void substractRow(int r, int s, Float k){
@@ -219,9 +237,9 @@ public class Matriks {
     public void makeLeftOne(int r, int c){
         // Menjadikan elemen baris paling kiri bernilai satu 
         // dengan membagi baris dengan konstanta yang sesuai
-        float k = findFirstNonZeroInRow(r, c);
+        float k = findFirstNonZeroInRow(r, 0);
         if (k != 0 && k!= 1){
-            for (int j = c; j < this.jEff; j++){
+            for (int j = 0; j < this.jEff; j++){
                 this.Mat[r][j] /= k;
             }
             System.out.println(String.format("\nBagi baris %d dengan %.2f", r, k));
@@ -333,8 +351,6 @@ public class Matriks {
             this.justDeletedAllZeroRow = true;
         }
     }
-
-    
 
     static public Matriks multiplyMatrix(Matriks m1, Matriks m2){
         Matriks m3 = new Matriks();

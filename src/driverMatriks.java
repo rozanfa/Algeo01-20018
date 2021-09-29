@@ -1,6 +1,11 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class driverMatriks {
+    public static String output = new String();
+
     public static void main(String[] args) {
         boolean running = true;
         while (running) {
@@ -13,7 +18,14 @@ public class driverMatriks {
             System.out.println("6. Keluar");
             System.out.print("Pilihan : ");
             Scanner scanner = new Scanner(System.in);
-            int option = scanner.nextInt();
+            int option;
+            try {
+                option = scanner.nextInt();
+            }
+            catch (Exception e){
+                option = -1;
+            }
+            
             System.out.println("");
             switch (option) {
                 case 1: {
@@ -44,21 +56,27 @@ public class driverMatriks {
                     System.out.println("Input tidak valid");
                 }
             }
+            if (option >= 1 && option <= 5) {
+                System.out.println("\nAPAKAH ANDA INGIN MENYIMPAN HASIL KE DALAM FILE?");
+                System.out.println("1. Ya");
+                System.out.println("2. Tidak");
+                System.out.print("Pilihan : ");
+                option = scanner.nextInt();
+                System.out.println("");
+                switch (option) {
+                    case 1: {
+                        saveResult();
+                        break;
+                    }
+                    case 2: {
+                        break;
+                    }
+                    default: {
+                        System.out.println("Input tidak valid");
+                    }
+                }
+            }
         }
-
-        /*
-        Matriks mat1 = new Matriks();
-        Extended.readMatrix(mat1);
-        System.out.println("Matriks yang dimasukkan adalah:");
-        Extended.printMatrix(mat1);
-        System.out.println("Akan dilakukan operasi invers memakai metode -adjoin");
-        // Extended.adjoint(mat1);
-        Extended.printMatrix(Balikan_Matriks.adjoin(mat1));
-        
-
-        SPL_Matriks mat2 = new SPL_Matriks();
-        mat2.spl_gauss_jordan();
-        */
     }
 
     public static void sistem_persamaan_linear(){
@@ -73,24 +91,62 @@ public class driverMatriks {
         System.out.println("");
         switch (option) {
             case 1: {
-                driverSPLMatirks.metode_gauss();
+                output = driverSPLMatirks.metode_gauss();
                 break;
             }
             case 2: {
-                driverSPLMatirks.metode_gauss_jordan();
+                output = driverSPLMatirks.metode_gauss_jordan();
                 break;
             }
             case 3: {
-                driverSPLMatirks.metode_invers();
+                output = driverSPLMatirks.metode_invers();
                 break;
             }
             case 4: {
-                driverSPLMatirks.metode_kaidah_crammer();
+                output = driverSPLMatirks.metode_kaidah_crammer();
                 break;
             }
             default : {
                 System.out.println("Input tidak valid");
             }
+        }
+    }
+
+
+
+    static public void saveResult(){
+        System.out.print("Masukkan nama file yang ingin dibuat: ");
+        Scanner scanner = new Scanner(System.in);
+        String fileName = scanner.nextLine();
+        File file = new File("output\\" + fileName + ".txt");
+        boolean succeed;
+
+        try {
+            succeed = file.createNewFile();
+
+            if (succeed){
+                System.out.println("File berhasil dibuat: " + file.getAbsolutePath());
+            }
+
+            else {
+                System.out.println("File sudah ada di " + file.getAbsolutePath());
+            }
+        }
+
+        catch (IOException e) {
+            System.out.println("Terjadi error saat membuat file");
+            e.printStackTrace();
+        }
+
+        try {
+            FileWriter fileWriter = new FileWriter("output\\" + fileName + ".txt");
+            fileWriter.write(output);
+            fileWriter.close();
+            System.out.println("Berhasil menulis ke file " + file.getAbsolutePath());
+        }
+        catch (IOException e) {
+            System.out.println("Terjadi error saat menulis file");
+            e.printStackTrace();
         }
     }
 }
