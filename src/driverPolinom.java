@@ -20,7 +20,7 @@ public class driverPolinom {
         for (int i = 0; i < xAmount; i++){
             x[i] = scanner.nextDouble();
         }
-        result += "\nTitik yang ingin ditaksir adalah:\n";
+        if (xAmount > 0) result += "\nTitik yang ingin ditaksir adalah:\n";
         for (int i = 0; i < xAmount; i++){
             result +=  x[i];
             if (i != xAmount -1) result += ", ";
