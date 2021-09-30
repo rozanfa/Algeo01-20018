@@ -1,4 +1,3 @@
-
 import java.io.File;
 import java.util.Locale;
 import java.util.Scanner;
@@ -16,11 +15,11 @@ public class driver_Regresi {
 	    System.out.println("nilai peubah x : ");
 	    for (int i = 0; i < mat.jEff-1; i++){
 	    	est[i] = scanner.nextDouble();
-	    	if (i!=mat.jEff-1) {
+	    	if (i!=mat.jEff-2) {
 		    	result +=String.valueOf(est[i])+",";
 	    	}
 	    	else {
-		    	result +=String.valueOf(est[i])+".\n";
+		    	result +=String.valueOf(est[i])+"\n";
 	    	}
 	    }
 	    Matriks mat1;
@@ -33,16 +32,17 @@ public class driver_Regresi {
 			   }
 		       else {
 		    	   if (mat1.Mat[l][mat1.jEff-1]>=0) {
-		    		   result+=" + "+ String.valueOf(mat1.Mat[l][mat1.jEff-1])+"x"+String.valueOf(l);
+		    		   result+=" + "+ String.valueOf(mat1.Mat[l][mat1.jEff-1])+"x"+"["+String.valueOf(l)+"]";
 		    	   }
 		    	   else {
-		    		   result+=" - "+String.valueOf(-mat1.Mat[l][mat1.jEff-1])+"x"+String.valueOf(l);
+		    		   result+=" - "+String.valueOf(-mat1.Mat[l][mat1.jEff-1])+"x"+"["+String.valueOf(l)+"]";
 		    	   } 
 			   }
 		    }
 	    result+="\n";
 	    result+="Hasil dari taksiran : ";
-	    int sum=0,k=0;
+	    int k=0;
+	    double sum=0;
 	    for (int i=0;i<mat1.iEff;i++) {
 		    if (i==0) {
 			    sum+=mat1.Mat[i][mat1.jEff-1];
