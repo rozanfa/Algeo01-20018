@@ -45,7 +45,7 @@ public class driverMatriks {
                     break;
                 }
                 case 5: {
-
+                	output = driver_Regresi.regression();
                     break;
                 }
                 case 6: {
@@ -140,7 +140,7 @@ public class driverMatriks {
         System.out.println("PILIH METODE");
         System.out.println("1. Metode kofaktor");
         System.out.println("2. Metode Gauss-Jordan (Row Reduction)");
-        System.out.println("2. Metode Sarrus");
+        System.out.println("3. Metode Sarrus");
         System.out.print("Pilihan : ");
         Scanner scanner = new Scanner(System.in);
         int option = scanner.nextInt();
@@ -151,11 +151,11 @@ public class driverMatriks {
                 break;
             }
             case 2: {
-
+            	output = driverDeterminan.metode_rowreduction();
                 break;
             }
             case 3: {
-
+            	output = driverDeterminan.metode_sarrus();
                 break;
             }
             default : {
