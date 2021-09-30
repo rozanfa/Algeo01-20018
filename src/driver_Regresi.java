@@ -12,15 +12,12 @@ public class driver_Regresi {
 		String result = "Persamaan yang dimasukkan dalam bentuk matriks :\n";
         Extended.printMatrix(mat);
         result += Extended.getMatriksString(mat) + "\n";
-		int x;
-		System.out.print("Masukkan banyaknya taksiran: ");
-	    x = scanner.nextInt();
-	    double est[]= new double[x];
-	    result +="nilai-nilai yang akan ditaksir adalah : ";
-	    System.out.print("Masukkan taksiran: ");
-	    for (int i = 0; i < x; i++){
+	    double est[]= new double[mat.jEff-1];
+	    result +="nilai peubah x : ";
+	    System.out.println("nilai peubah x : ");
+	    for (int i = 0; i < mat.jEff-1; i++){
 	    	est[i] = scanner.nextDouble();
-	    	if (i!=x-1) {
+	    	if (i!=mat.jEff-1) {
 		    	result +=String.valueOf(est[i])+",";
 	    	}
 	    	else {
@@ -28,7 +25,7 @@ public class driver_Regresi {
 	    	}
 	    }
 	    Matriks mat1;
-	    mat1=Regresi_Matriks.Regression(mat, est, x);
+	    mat1=Regresi_Matriks.Regression(mat, est);
 	    result +="Persamaan Regresi linearnya adalah :\n";
 	    result +="y = ";
 	    for (int l=0;l<mat1.iEff;l++) {
@@ -45,19 +42,18 @@ public class driver_Regresi {
 			   }
 		    }
 	    result+="\n";
-	    for (int k=0;k<x;k++) {
-			   result+="Hasil dari taksiran x = "+String.valueOf(est[k]) +" : ";
-			   int sum=0;
-			   for (int i=0;i<mat1.iEff;i++) {
-				   if (i==0) {
-					   sum+=mat1.Mat[i][mat1.jEff-1];
-				   }
-			       else {
-			    	   sum+=mat1.Mat[i][mat1.jEff-1]*est[k];
-				   }
-			   }
-			   result+=String.valueOf(sum)+"\n";
+	    result+="Hasil dari taksiran : ";
+	    int sum=0,k=0;
+	    for (int i=0;i<mat1.iEff;i++) {
+		    if (i==0) {
+			    sum+=mat1.Mat[i][mat1.jEff-1];
+		    }
+	        else {
+	    	    sum+=mat1.Mat[i][mat1.jEff-1]*est[k];
+	    	    k+=1;
+		    }
 	    }
+	    result+=String.valueOf(sum)+"\n";
 	    return result;
 	}
 	static void isiRegresi_dariKeyboard(Matriks mat){

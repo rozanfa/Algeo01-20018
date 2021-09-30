@@ -2,8 +2,14 @@ import java.io.File;
 import java.util.Locale;
 import java.util.Scanner;
 
+package tubesalgeo;
+
+import java.io.File;
+import java.util.Locale;
+import java.util.Scanner;
+
 public class Regresi_Matriks extends Matriks {
-	public static Matriks Regression (Matriks mat, double[] est, int x) {
+	public static Matriks Regression (Matriks mat, double[] est) {
 		   Matriks mat1 = new Matriks();
 		   mat1.iEff=mat.jEff;
 		   mat1.jEff=mat.jEff+1;
@@ -59,35 +65,38 @@ public class Regresi_Matriks extends Matriks {
 			   }
 		    }   
 		   System.out.println();
-		   for (int k=0;k<x;k++) {
-			   System.out.println();
-			   System.out.println("Hasil dari taksiran x = "+String.valueOf(est[k]) +" : ");
-			   System.out.print("y = ");
-			   for (int i=0;i<mat1.iEff;i++) {
-				   if (i==0) {
-					   System.out.print(mat1.Mat[i][mat1.jEff-1]);
-				   }
-			       else {
-			    	   if (mat1.Mat[i][mat1.jEff-1]>=0) {
-			    		   System.out.print(" + "+ mat1.Mat[i][mat1.jEff-1]+"*"+est[k]);
-			    	   }
-			    	   else {
-			    		   System.out.print(" - "+-mat1.Mat[i][mat1.jEff-1]+"*"+est[k]);
-			    	   } 
-				   }
+		   System.out.println();
+		   System.out.println("Hasil dari taksirannya : ");
+		   System.out.print("y = ");
+		   int k=0;
+		   for (int i=0;i<mat1.iEff;i++) {
+			   if (i==0) {
+				   System.out.print(mat1.Mat[i][mat1.jEff-1]);
 			   }
-			   System.out.println();
-			   int sum=0;
-			   for (int i=0;i<mat1.iEff;i++) {
-				   if (i==0) {
-					   sum+=mat1.Mat[i][mat1.jEff-1];
-				   }
-			       else {
-			    	   sum+=mat1.Mat[i][mat1.jEff-1]*est[k];
-				   }
+		       else {
+		    	   if (mat1.Mat[i][mat1.jEff-1]>=0) {
+		    		   System.out.print(" + "+ mat1.Mat[i][mat1.jEff-1]+"*"+est[k]);
+		    	   }
+		    	   else {
+		    		   System.out.print(" - "+-mat1.Mat[i][mat1.jEff-1]+"*"+est[k]);
+		    	   }
+		    	   k+=1;
 			   }
-			   System.out.println("y = "+sum);
 		   }
+		   System.out.println();
+		   int sum=0;
+		   k=0;
+		   for (int i=0;i<mat1.iEff;i++) {
+			   if (i==0) {
+				   sum+=mat1.Mat[i][mat1.jEff-1];
+			   }
+		       else {
+		    	   sum+=mat1.Mat[i][mat1.jEff-1]*est[k];
+		    	   k+=1;
+			   }
+		   }
+		   System.out.println("y = "+sum);
+		   
 		   return mat1;
 
 	  }
