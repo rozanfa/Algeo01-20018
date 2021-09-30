@@ -15,7 +15,7 @@ public class driver_Regresi {
 	    System.out.println("nilai peubah x : ");
 	    for (int i = 0; i < mat.jEff-1; i++){
 	    	est[i] = scanner.nextDouble();
-	    	if (i!=mat.jEff-1) {
+	    	if (i!=mat.jEff-2) {
 		    	result +=String.valueOf(est[i])+",";
 	    	}
 	    	else {
