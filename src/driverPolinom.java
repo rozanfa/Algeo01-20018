@@ -15,7 +15,7 @@ public class driverPolinom {
 
         System.out.print("Masukkan jumlah titik yang ingin ditaksir: ");
         int xAmount = scanner.nextInt();
-        System.out.println("Masukkan titik yang ingin ditaksir:");
+        if (xAmount > 0) System.out.println("Masukkan titik yang ingin ditaksir:");
         Double x[] = new Double[xAmount];
         for (int i = 0; i < xAmount; i++){
             x[i] = scanner.nextDouble();
