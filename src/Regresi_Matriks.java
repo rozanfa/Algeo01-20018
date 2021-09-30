@@ -2,12 +2,6 @@ import java.io.File;
 import java.util.Locale;
 import java.util.Scanner;
 
-package tubesalgeo;
-
-import java.io.File;
-import java.util.Locale;
-import java.util.Scanner;
-
 public class Regresi_Matriks extends Matriks {
 	public static Matriks Regression (Matriks mat, double[] est) {
 		   Matriks mat1 = new Matriks();

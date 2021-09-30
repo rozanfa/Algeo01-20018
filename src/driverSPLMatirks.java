@@ -5,7 +5,7 @@ public class driverSPLMatirks {
         System.out.println("Masukkan SPL dalam bentuk matriks augmented");
         main.isiMatriks();
         result += main.getMatriksString() + "\n";
-        
+        result += "Metode Matriks Balikan\n\n";
         if (main.iEff == (main.jEff - 1)){
             // Buat menjadi Ax = B
             Matriks b = new Matriks();
@@ -73,6 +73,7 @@ public class driverSPLMatirks {
         System.out.println("Masukkan SPL dalam bentuk matriks augmented");
         main.isiMatriks();
         result += main.getMatriksString() + "\n";
+        result += "Kaidah Crammer\n\n";
         Double res[] = new Double[15];
         if (main.iEff == (main.jEff - 1)){
             Matriks cons = new Matriks();
@@ -139,6 +140,7 @@ public class driverSPLMatirks {
         String result = "Sistem Persamaan Linear\n";
         result += M.getMatriksString() + "\n";
         M.spl_gauss_jordan();
+        result += "Metode Gauss-Jordan\n\n" + "Matriks akhir :\n" + M.getMatriksString() + "\n";
         result += M.result;
         return result;
     }
@@ -150,6 +152,7 @@ public class driverSPLMatirks {
         String result = "Sistem Persamaan Linear\n";
         result += M.getMatriksString() + "\n";
         M.spl_gauss();
+        result += "Metode Gauss\n\n" + "Matriks akhir :\n" + M.getMatriksString() + "\n";
         result += M.result;
         return result;
     }

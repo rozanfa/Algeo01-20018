@@ -1,0 +1,1 @@
+javac driverMatriks.java && java driverMatriks
