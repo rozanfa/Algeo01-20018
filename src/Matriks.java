@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Matriks {
     
-    String name;
     Double Mat[][] = new Double[25][25];
     Double matrix[][]; 
 
@@ -13,7 +12,7 @@ public class Matriks {
     int zeroRows = 0;
     int iInitial = 0;
     boolean justDeletedAllZeroRow = false;
-    boolean isHaveAnswer = true; //pengen banget gw fix ke hasAnswer aeugh // sorry bas rip inggris aeugh
+    boolean hasAnswer = true; //pengen banget gw fix ke hasAnswer aeugh // sorry bas rip inggris aeugh
     boolean justSwappedRow = false;
 
     public String result = new String();
@@ -38,7 +37,7 @@ public class Matriks {
         iInitial = 0;
         justDeletedAllZeroRow = false;
         justSwappedRow = false;
-        isHaveAnswer = true;
+        hasAnswer = true;
     }
 
     void isiMatriks(){
@@ -119,8 +118,7 @@ public class Matriks {
         newMat.iInitial = this.iInitial;
         newMat.zeroRows = this.zeroRows;
         newMat.justDeletedAllZeroRow = this.justDeletedAllZeroRow;
-        newMat.isHaveAnswer = this.isHaveAnswer;
-        newMat.name = this.name;
+        newMat.hasAnswer = this.hasAnswer;
         for (int i = 0; i < this.iEff; i++){
             for (int j = 0; j < this.jEff; j++){
                 newMat.Mat[i][j] = this.Mat[i][j];
