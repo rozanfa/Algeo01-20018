@@ -19,7 +19,7 @@ public class driver_Regresi {
 		    	result +=String.valueOf(est[i])+",";
 	    	}
 	    	else {
-		    	result +=String.valueOf(est[i])+".\n";
+		    	result +=String.valueOf(est[i])+"\n";
 	    	}
 	    }
 	    Matriks mat1;
