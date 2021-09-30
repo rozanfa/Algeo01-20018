@@ -1,4 +1,3 @@
-
 import java.io.File;
 import java.util.Locale;
 import java.util.Scanner;
@@ -33,10 +32,10 @@ public class driver_Regresi {
 			   }
 		       else {
 		    	   if (mat1.Mat[l][mat1.jEff-1]>=0) {
-		    		   result+=" + "+ String.valueOf(mat1.Mat[l][mat1.jEff-1])+"x"+String.valueOf(l);
+		    		   result+=" + "+ String.valueOf(mat1.Mat[l][mat1.jEff-1])+"x"+"["+String.valueOf(l)+"]";
 		    	   }
 		    	   else {
-		    		   result+=" - "+String.valueOf(-mat1.Mat[l][mat1.jEff-1])+"x"+String.valueOf(l);
+		    		   result+=" - "+String.valueOf(-mat1.Mat[l][mat1.jEff-1])+"x"+"["+String.valueOf(l)+"]";
 		    	   } 
 			   }
 		    }

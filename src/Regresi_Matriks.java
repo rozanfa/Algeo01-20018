@@ -51,10 +51,10 @@ public class Regresi_Matriks extends Matriks {
 			   }
 		       else {
 		    	   if (mat1.Mat[l][mat1.jEff-1]>=0) {
-		    		   System.out.print(" + "+ mat1.Mat[l][mat1.jEff-1]+"x"+String.valueOf(l));
+		    		   System.out.print(" + "+ mat1.Mat[l][mat1.jEff-1]+"x"+"["+String.valueOf(l)+"]");
 		    	   }
 		    	   else {
-		    		   System.out.print(" - "+-mat1.Mat[l][mat1.jEff-1]+"x"+String.valueOf(l));
+		    		   System.out.print(" - "+-mat1.Mat[l][mat1.jEff-1]+"x"+"["+String.valueOf(l)+"]");
 		    	   } 
 			   }
 		    }   
