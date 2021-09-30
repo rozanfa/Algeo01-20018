@@ -5,7 +5,8 @@ public class driverPolinom {
     public static String polinom(){
         Scanner scanner = new Scanner(System.in);
         Polinom_Matriks polinomFormat = new Polinom_Matriks();
-        String result = "Mencari Interpolasi polinom:\n";
+        String result = "Interpolasi polinom:\n";
+        result += "\nTitik yang diberikan:\n";
 
         System.out.print("Berapa banyaknya titik yang ingin dimasukkan: ");
         int n = scanner.nextInt();
@@ -19,7 +20,7 @@ public class driverPolinom {
         for (int i = 0; i < xAmount; i++){
             x[i] = scanner.nextDouble();
         }
-        result += "\nTitik yang ingin ditaksir adalah: ";
+        result += "\nTitik yang ingin ditaksir adalah:\n";
         for (int i = 0; i < xAmount; i++){
             result +=  x[i];
             if (i != xAmount -1) result += ", ";
@@ -31,14 +32,17 @@ public class driverPolinom {
         polinomFormat.copyEquation();
 
         System.out.println("Persamaan yang didapat merupakan: \n" + polinomFormat.getEquation());
-        result += "Persamaan yang didapat merupakan: \n" + polinomFormat.getEquation();
+        result += "\nPersamaan yang didapat merupakan:\n" + polinomFormat.getEquation();
 
-        result += "\nMaka ditaksir:";
-        System.out.println("Maka ditaksir:");
-        for (int i = 0; i < xAmount; i++){
-            System.out.print("p(" + x[i] + ") = " + String.format("%.4f", polinomFormat.getYFromEq(x[i])) + "\n");
-            result += "\np(" + x[i] + ") = " + String.format("%.4f", polinomFormat.getYFromEq(x[i]));
+        if (xAmount > 0){
+            result += "\nMaka ditaksir:";
+            System.out.println("Maka ditaksir:");
+            for (int i = 0; i < xAmount; i++){
+                System.out.print("p(" + x[i] + ") = " + String.format("%.4f", polinomFormat.getYFromEq(x[i])) + "\n");
+                result += "\np(" + x[i] + ") = " + String.format("%.4f", polinomFormat.getYFromEq(x[i]));
+            }
         }
+        
         return result;
     }
 }

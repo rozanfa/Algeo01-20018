@@ -114,11 +114,20 @@ public class Polinom_Matriks extends Matriks{
      * </ul>
      */
     public String getEquation(){
-        String temp = "";
+        String temp = "p(x) = ";
         for (int i = 0; i < eqLength; i++){
-            temp += "x[" + i + "] = " + String.format("%.4f", equation[i]);
-            temp += "\n";
-        }
+            if (i != 0){
+                if (equation[i] >= 0) temp += " + ";
+                else temp += " - ";
+            }
+
+            if (equation[i] >= 0) temp += String.format("%.4f", equation[i]);
+            else temp+= String.format("%.4f", -1 * equation[i]);
+
+            if (i > 0) temp += "x";
+            if (i > 1) temp += "^" +i;
+            }
+        temp += "\n";
         return temp;
     }
 }
