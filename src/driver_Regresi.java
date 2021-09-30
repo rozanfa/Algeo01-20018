@@ -41,7 +41,8 @@ public class driver_Regresi {
 		    }
 	    result+="\n";
 	    result+="Hasil dari taksiran : ";
-	    int sum=0,k=0;
+	    int k=0;
+	    double sum=0;
 	    for (int i=0;i<mat1.iEff;i++) {
 		    if (i==0) {
 			    sum+=mat1.Mat[i][mat1.jEff-1];
