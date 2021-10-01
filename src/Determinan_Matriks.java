@@ -68,7 +68,7 @@ public class Determinan_Matriks extends Matriks {
     	}
     }
     
-    static void DetwithOBE (Matriks mat) {
+    static Double DetwithOBE (Matriks mat) {
     	int i,j;
     	double det;
     	maketriangularmatrix(mat);
@@ -87,9 +87,10 @@ public class Determinan_Matriks extends Matriks {
     	}
     	System.out.println();
     	System.out.println("Determinan = " +det);
+    	return det;
     }
     
-    static void DetwithSarrus (Matriks mat){
+    static Double DetwithSarrus (Matriks mat){
     	if (mat.jEff == 3 && mat.iEff ==3) {
     		Matriks matbaru = new Matriks();
     		String[][] matbaru2 = new String[3][5];
@@ -144,15 +145,19 @@ public class Determinan_Matriks extends Matriks {
     				         +matbaru.Mat[2][1]+" * "+matbaru.Mat[1][2]+" * "+matbaru.Mat[0][3]+") - ("
     		                 +matbaru.Mat[2][2]+" * "+matbaru.Mat[1][3]+" * "+matbaru.Mat[0][4]+")");
     		
-    		System.out.println(" = "+ (matbaru.Mat[0][0]*matbaru.Mat[1][1]*matbaru.Mat[2][2]+
+    		double det =             ((matbaru.Mat[0][0]*matbaru.Mat[1][1]*matbaru.Mat[2][2]+
     				                  matbaru.Mat[0][1]*matbaru.Mat[1][2]*matbaru.Mat[2][3]+
     				                  matbaru.Mat[0][2]*matbaru.Mat[1][3]*matbaru.Mat[2][4]-
     				                  matbaru.Mat[2][0]*matbaru.Mat[1][1]*matbaru.Mat[0][2]-
     				                  matbaru.Mat[2][1]*matbaru.Mat[1][2]*matbaru.Mat[0][3]-
     				                  matbaru.Mat[2][2]*matbaru.Mat[1][3]*matbaru.Mat[0][4]));
+    		
+    		System.out.println (" = "+det);
+    		return det;
     	}
-    		else {
-    			System.out.println("Tidak bisa mencari determinan menggunakan metode Sarrus selain di matriks 3 x 3");
+    	else {
+    		System.out.println("Tidak bisa mencari determinan menggunakan metode Sarrus selain di matriks 3 x 3");
+    		return 0.0;
         }
     }
     

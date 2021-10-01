@@ -2,7 +2,7 @@ import java.io.File;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class driver_Regresi {
+public class driver_Regresi extends Matriks{
 	public static String regression() {
 		Scanner scanner = new Scanner(System.in);
 		Matriks mat = new Matriks();
@@ -12,6 +12,7 @@ public class driver_Regresi {
         Extended.printMatrix(mat);
         result += Extended.getMatriksString(mat) + "\n";
 	    double est[]= new double[mat.jEff-1];
+	    // array untuk menyimpan nilai-nilai variabel x
 	    result +="nilai peubah x : ";
 	    System.out.println("nilai peubah x : ");
 	    for (int i = 0; i < mat.jEff-1; i++){
