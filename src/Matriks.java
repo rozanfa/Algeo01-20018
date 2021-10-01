@@ -105,7 +105,7 @@ public class Matriks {
                 }
                 isFileAvailable = true;
             } catch (Exception ex) {
-                System.out.println("Error : Tidak ditemukan file. " + ex.getMessage());
+                System.out.println("Error : " + ex.getMessage());
                 isFileAvailable = false;
             }
         }
