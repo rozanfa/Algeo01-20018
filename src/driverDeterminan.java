@@ -12,8 +12,6 @@ public class driverDeterminan {
         return result;
     }
 	public static String metode_sarrus() {
-		public static String metode_sarrus() {
-			
 	        Matriks matriks = new Matriks();
 	        matriks.isiMatriks();
 	        System.out.println("\nMatriks yang dimasukkan:");
