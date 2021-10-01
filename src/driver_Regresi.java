@@ -56,15 +56,7 @@ public class driver_Regresi {
 	    result+=String.valueOf(sum)+"\n";
 	    return result;
 	}
-	static void isiRegresi_dariKeyboard(Matriks mat){
-        Scanner scanner = new Scanner(System.in);
-        for (int i = 0; i < mat.iEff; i++){
-        	System.out.println("Masukkan sampel ke "+String.valueOf(i+1)+" :");
-            for (int j = 0; j < mat.jEff; j++){
-            	mat.Mat[i][j] = scanner.nextDouble();
-            }
-        }
-    }
+
    static void isiRegresi(Matriks mat){
 	    Scanner scanner = new Scanner(System.in);
         System.out.println("\nPilih jenis input");
@@ -76,14 +68,14 @@ public class driver_Regresi {
         switch (option) {
             case 1: {
             	int n, m;
-                System.out.print("Masukkan banyaknya peubah x: ");
+                System.out.print("Masukkan banyaknya variabel: ");
                 n = scanner.nextInt();
                 System.out.print("Masukkan banyaknya sampel: ");
                 m = scanner.nextInt();
                 mat.iEff = m;
                 mat.jEff = n+1;
                 mat.iInitial = m;
-            	isiRegresi_dariKeyboard(mat);
+                mat.isiMatriks_dariKeyboard();
                 break;
             }
             case 2: {
@@ -95,7 +87,7 @@ public class driver_Regresi {
                 mat.iEff = m;
                 mat.jEff = n;
                 mat.iInitial = m;
-                isiRegresi_dariFile(mat);
+                mat.isiMatriks_dariFile();
                 break;
             }
             default : {
@@ -104,30 +96,4 @@ public class driver_Regresi {
         }
     }
    
-   static void isiRegresi_dariFile(Matriks mat){
-        Scanner scanner = new Scanner(System.in);
-        Scanner fileScanner = null;
-        boolean isFileAvailable = false;
-        while (!isFileAvailable) {
-            try {
-                System.out.print("Masukkan path file: ");
-                String fileName = scanner.nextLine();
-                File file = new File(fileName);
-                fileScanner = new Scanner(file);
-                fileScanner.useLocale(Locale.US);
-                if (fileScanner.hasNext()){
-                    for (int i = 0; i < mat.iInitial; i++){
-                        for (int j = 0; j < mat.jEff; j++){
-                        	mat.Mat[i][j] = fileScanner.nextDouble();
-                        }
-                        fileScanner.nextLine();
-                    }
-                }
-                isFileAvailable = true;
-            } catch (Exception ex) {
-                System.out.println("Error : Tidak ditemukan file. " + ex.getMessage());
-                isFileAvailable = false;
-            }
-        }
-    }
 }
