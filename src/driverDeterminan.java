@@ -22,13 +22,13 @@ public class driverDeterminan {
         result+="Determinan matriksnya adalah: "+ String.format("%.2f", Determinan_Matriks.kofaktor(matriks));
         return result;
 	}
-	public static String metode_rowreduction() {
-		String result = "Matriks yang akan dicari determinannya melalui metode rowreduction:\n";
+	public static String metode_obe() {
+		String result = "Matriks yang akan dicari determinannya melalui metode obe:\n";
 		Matriks matriks = new Matriks();
         Extended.readMatrix(matriks);
         System.out.println("\nMatriks yang dimasukkan:");
         Extended.printMatrix(matriks);
-        Determinan_Matriks.DetwithRowReduction(matriks);
+        Determinan_Matriks.DetwithOBE(matriks);
         result += Extended.getMatriksString(matriks) + "\n";
         result+="Determinan matriksnya adalah: "+ String.format("%.2f", Determinan_Matriks.kofaktor(matriks));
         return result;
