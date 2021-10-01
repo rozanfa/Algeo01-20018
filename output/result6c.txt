@@ -1,0 +1,11 @@
+Interpolasi polinom:
+
+Titik yang diberikan:(0.0,0.0)
+(0.4,0.4188)
+(0.8,0.5072)
+(1.2,0.5609)
+(1.6,0.5837)
+(2.0,0.5767)
+
+Persamaan yang didapat merupakan:
+p(x) = 0.0000 + 2.0335x - 3.5459x^2 + 3.2283x^3 - 1.4165x^4 + 0.2354x^5

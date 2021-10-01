@@ -1,5 +1,6 @@
+import java.io.File;
+import java.util.Locale;
 import java.util.Scanner;
-
 public class Extended extends Matriks{
 
     // gw buat ini karena.. Lemon-san memutuskan hanya butuh 1 matrix, 
@@ -8,27 +9,98 @@ public class Extended extends Matriks{
 
 
 
-    /**
-     * Fills in a specified matrix. <br></br>
-     * User inputs the row and columns first, then the matrix's elements
-     */
+    // /**
+    //  * Fills in a specified matrix. <br></br>
+    //  * User inputs the row and columns first, then the matrix's elements
+    //  */
+    // static void readMatrix(Matriks mat){
+    //     Scanner scanner = new Scanner(System.in);
+    //     int baris, kolom;
+    //     System.out.print("Masukkan baris matriks: ");
+    //     baris = scanner.nextInt();
+    //     System.out.print("Masukkan kolom matriks: ");
+    //     kolom = scanner.nextInt();
+        
+    //     int i,j;
+    //     mat.iEff = baris;
+    //     mat.jEff = kolom;
+    //     mat.iInitial = baris;
+    //     for (i = 0; i < baris; i++){
+    //         for (j = 0; j < kolom; j++){
+    //             mat.matrix[i][j] = scanner.nextDouble();
+    //         }
+    //         deleteRowIfRowAllZero(mat, i);
+    //     }
+    // }
+
     static void readMatrix(Matriks mat){
         Scanner scanner = new Scanner(System.in);
-        int baris, kolom;
+        int n, m;
         System.out.print("Masukkan baris matriks: ");
-        baris = scanner.nextInt();
+        n = scanner.nextInt();
         System.out.print("Masukkan kolom matriks: ");
-        kolom = scanner.nextInt();
+        m = scanner.nextInt();
         
-        int i,j;
-        mat.iEff = baris;
-        mat.jEff = kolom;
-        mat.iInitial = baris;
-        for (i = 0; i < baris; i++){
-            for (j = 0; j < kolom; j++){
+        mat.iEff = n;
+        mat.jEff = m;
+        mat.iInitial = n;
+
+        System.out.println("\nPilih jenis input");
+        System.out.println("1. Input dari keyboard");
+        System.out.println("2. Input dari file");
+        System.out.print("Pilihan : ");
+        int option = scanner.nextInt();
+        System.out.println("");
+        switch (option) {
+            case 1: {
+                readMatrix_keyboard(mat);
+                break;
+            }
+            case 2: {
+                readMatrix_file(mat);
+                break;
+            }
+            default : {
+                System.out.println("Input tidak valid");
+            }
+        }
+    }
+
+    static void readMatrix_keyboard(Matriks mat){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(String.format("Masukkan matriks %d x %d :", mat.iEff, mat.jEff));
+        for (int i = 0; i < mat.iInitial; i++){
+            for (int j = 0; j < mat.jEff; j++){
                 mat.matrix[i][j] = scanner.nextDouble();
             }
-            deleteRowIfRowAllZero(mat, i);
+        }
+    }
+
+    static void readMatrix_file(Matriks mat){
+        Scanner scanner = new Scanner(System.in);
+        Scanner fileScanner = null;
+        boolean isFileAvailable = false;
+        
+        while (!isFileAvailable) {
+            try {
+                System.out.print("Masukkan path file: ");
+                String fileName = scanner.nextLine();
+                File file = new File(fileName);
+                fileScanner = new Scanner(file);
+                fileScanner.useLocale(Locale.US);
+                if (fileScanner.hasNext()){
+                    for (int i = 0; i < mat.iInitial; i++){
+                        for (int j = 0; j < mat.jEff; j++){
+                            mat.matrix[i][j] = fileScanner.nextDouble();
+                        }
+                        fileScanner.nextLine();
+                    }
+                }
+                isFileAvailable = true;
+            } catch (Exception ex) {
+                System.out.println("Error : Tidak ditemukan file. " + ex.getMessage());
+                isFileAvailable = false;
+            }
         }
     }
 
