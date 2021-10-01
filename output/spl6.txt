@@ -1,8 +1,0 @@
-Sistem Persamaan Linier
-0.00 0.00 0.00 0.00 
-2.00 5.00 3.00 1.00 
-1.00 5.00 3.00 6.00 
-
-Determinan matriks = 0
-Matriks tidak mempunyai balikan
-Tidak bisa diselesaikan menggunakan metode matriks balikan
