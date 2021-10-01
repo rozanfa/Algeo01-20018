@@ -25,8 +25,8 @@
 - Setelah itu, pengguna memilih jenis input. Apakah input dari keyboard atau input dari file
 
 ### Cara memasukkan input dari fike
-- Saat memilih jenis input "Input dari file", masukkan path lengkap file txt yang hanya berisi matriks. Contohnya "D:\Data\Input\Matriks.txt".
-- Jika terdapat pesan kesalahan "Error : No line found", berarti matriks pada file tidak sesuai dengan input pengguna.
+- Saat memilih jenis input "Input dari file", masukkan path lengkap file txt yang hanya berisi matriks. Contohnya "D:\Data\Input\Matriks.txt". File txt yang digunakan harus memiliki endline di akhir (baris terakhir file merupakan baris kosong).
+- Jika terdapat pesan kesalahan "Error : No line found", berarti file tidak memiliki endline di akhir ataupun matriks pada file tidak sesuai dengan input pengguna.
 
 ### Cara menyimpan hasil ke dalam file
 - Setelah mencetak solusi ke layar, program akan menayakan apakan pengguna ingin menyimpan solusi ke dalam file. Jika pengguna memilih pilihan "Ya", maka program akan menanyakan nama file yang ingin disimpan menyimpan solusi dengan nama yang diberikan pengguna di folder ../output berformat txt (pengguna tidak perlu menuliskan .txt di akhir file)
