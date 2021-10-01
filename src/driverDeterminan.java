@@ -34,8 +34,8 @@ public class driverDeterminan {
 		matriks.isiMatriks();
         System.out.println("\nMatriks yang dimasukkan:");
         matriks.cetakMatriks();
-        Determinan_Matriks.DetwithOBE(matriks);
         result += matriks.getMatriksString()+"\n";
+        Determinan_Matriks.DetwithOBE(matriks);
         result+="Determinan matriksnya adalah: "+ String.format("%.2f", Determinan_Matriks.kofaktor(matriks));
         return result;
 	}
