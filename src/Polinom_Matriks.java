@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.io.File;
+import java.util.Locale;
 
 public class Polinom_Matriks extends Matriks{
 
@@ -12,17 +14,48 @@ public class Polinom_Matriks extends Matriks{
     public Matriks matrix = new Matriks();
 
 
+
+
     /** 
      * Reads the points in the form of(x,y) without brackets, each line is one point. <br> </br>
-     * Specify how many points to be read
+     * Specify how many points to be read. Read from keyboard
      */
-    public void readPoints(int points){
+    public void readPoints_keyboard(int points){
         for (int i = 0; i < points; i++){
             this.xyMatrice[i][0] = scanner.nextDouble();
             this.xyMatrice[i][1] = scanner.nextDouble();
         }
         this.iEffxy = points;
     };
+
+
+    void readPoints_file(int points){
+        Scanner scanner = new Scanner(System.in);
+        Scanner fileScanner = null;
+        boolean isFileAvailable = false;
+        this.iEffxy = points;
+        while (!isFileAvailable) {
+            try {
+                System.out.print("Masukkan path file: ");
+                String fileName = scanner.nextLine();
+                File file = new File(fileName);
+                fileScanner = new Scanner(file);
+                fileScanner.useLocale(Locale.US);
+                if (fileScanner.hasNext()){
+                    for (int i = 0; i < points; i++){
+                        for (int j = 0; j < 2; j++){
+                            this.xyMatrice[i][j] = fileScanner.nextDouble();
+                        }
+                        fileScanner.nextLine();
+                    }
+                }
+                isFileAvailable = true;
+            } catch (Exception ex) {
+                System.out.println("Error : Tidak ditemukan file. " + ex.getMessage());
+                isFileAvailable = false;
+            }
+        }
+    }
 
     /**
      * prints the points given to a (x,y) format
