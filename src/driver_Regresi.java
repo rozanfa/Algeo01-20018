@@ -7,6 +7,7 @@ public class driver_Regresi {
 		Scanner scanner = new Scanner(System.in);
 		Matriks mat = new Matriks();
 		isiRegresi(mat);
+		System.out.println("Persamaan yang dimasukkan dalam bentuk matriks :");
 		String result = "Persamaan yang dimasukkan dalam bentuk matriks :\n";
         Extended.printMatrix(mat);
         result += Extended.getMatriksString(mat) + "\n";
@@ -66,16 +67,6 @@ public class driver_Regresi {
     }
    static void isiRegresi(Matriks mat){
 	    Scanner scanner = new Scanner(System.in);
-	    int n, m;
-        System.out.print("Masukkan banyaknya peubah x: ");
-        n = scanner.nextInt();
-        System.out.print("Masukkan banyaknya sampel: ");
-        m = scanner.nextInt();
-        
-        mat.iEff = m;
-        mat.jEff = n+1;
-        mat.iInitial = m;
-
         System.out.println("\nPilih jenis input");
         System.out.println("1. Input dari keyboard");
         System.out.println("2. Input dari file");
@@ -84,10 +75,26 @@ public class driver_Regresi {
         System.out.println("");
         switch (option) {
             case 1: {
+            	int n, m;
+                System.out.print("Masukkan banyaknya peubah x: ");
+                n = scanner.nextInt();
+                System.out.print("Masukkan banyaknya sampel: ");
+                m = scanner.nextInt();
+                mat.iEff = m;
+                mat.jEff = n+1;
+                mat.iInitial = m;
             	isiRegresi_dariKeyboard(mat);
                 break;
             }
             case 2: {
+            	int n, m;
+                System.out.print("Masukkan baris matriks: ");
+                m = scanner.nextInt();
+                System.out.print("Masukkan kolom matriks: ");
+                n = scanner.nextInt();
+                mat.iEff = m;
+                mat.jEff = n;
+                mat.iInitial = m;
                 isiRegresi_dariFile(mat);
                 break;
             }
@@ -101,7 +108,6 @@ public class driver_Regresi {
         Scanner scanner = new Scanner(System.in);
         Scanner fileScanner = null;
         boolean isFileAvailable = false;
-        
         while (!isFileAvailable) {
             try {
                 System.out.print("Masukkan path file: ");

@@ -54,7 +54,7 @@ public class Determinan_Matriks extends Matriks {
 
     }
     
-    static void RowReduction (Matriks mat) {
+    static void maketriangularmatrix (Matriks mat) {
     	int i,j,swap=0;
     	for (i = 0; i < mat.iEff; i++){
             mat.swapIfFirstRowIsZero(i,i);
@@ -68,10 +68,10 @@ public class Determinan_Matriks extends Matriks {
     	}
     }
     
-    static void DetwithRowReduction (Matriks mat) {
+    static void DetwithOBE (Matriks mat) {
     	int i,j;
     	double det;
-    	RowReduction(mat);
+    	maketriangularmatrix(mat);
     	if (mat.justDeletedAllZeroRow) {
     		det=0;
     	}

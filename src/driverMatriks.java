@@ -151,7 +151,7 @@ public class driverMatriks {
                 break;
             }
             case 2: {
-            	output = driverDeterminan.metode_rowreduction();
+            	output = driverDeterminan.metode_obe();
                 break;
             }
             case 3: {
