@@ -1,1 +1,1 @@
-javac driverMatriks.java && java driverMatriks
+javac -classpath ..\bin\ driverMatriks.java && java -classpath ..\bin\ driverMatriks
