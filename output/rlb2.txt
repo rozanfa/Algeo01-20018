@@ -1,0 +1,9 @@
+Persamaan yang dimasukkan dalam bentuk matriks :
+5.00 2.00 8.00 6.00 4.00 
+7.00 2.00 3.00 1.00 10.00 
+4.00 2.00 6.00 2.00 6.00 
+4.00 3.00 7.00 4.00 7.00 
+
+nilai peubah x : 3.0,6.0,11.0,14.0,Persamaan Regresi linearnya adalah :
+y = 7.555555555555558 + 0.2222222222222221x1 + 2.1111111111111107x2 - 1.1111111111111112x3 + -0.0x4
+Hasil dari taksiran : 6

@@ -1,0 +1,12 @@
+Persamaan yang dimasukkan dalam bentuk matriks :
+2.00 6.00 8.00 3.00 
+5.00 8.00 2.00 1.00 
+3.00 5.00 8.00 9.00 
+2.00 4.00 7.00 9.00 
+4.00 6.00 7.00 29.00 
+
+nilai-nilai yang akan ditaksir adalah : 10.0,2.0.
+Persamaan Regresi linearnya adalah :
+y = -33.076009501188715 + 12.061757719714954x1 - 4.199524940617454x2 + 4.536817102137826x3
+Hasil dari taksiran x = 10.0 : 90
+Hasil dari taksiran x = 2.0 : -6

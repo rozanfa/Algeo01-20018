@@ -85,7 +85,7 @@ public class driverMatriks {
         System.out.println("1. Metode eliminasi Gauss");
         System.out.println("2. Metode eliminasi Gauss-Jordan");
         System.out.println("3. Metode matriks balikan");
-        System.out.println("4. Kaidah Crammer");
+        System.out.println("4. Kaidah Cramer");
         System.out.print("Pilihan : ");
         Scanner scanner = new Scanner(System.in);
         int option = scanner.nextInt();
