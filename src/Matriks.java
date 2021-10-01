@@ -100,9 +100,8 @@ public class Matriks {
                         for (int j = 0; j < this.jEff; j++){
                             this.Mat[i][j] = fileScanner.nextDouble();
                         }
-                        if (i != this.iInitial - 1){
-                            fileScanner.nextLine();
-                        }
+                            
+                        fileScanner.nextLine();
                         
                     }
                 }
