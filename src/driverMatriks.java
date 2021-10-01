@@ -139,7 +139,7 @@ public class driverMatriks {
     public static void determinan(){
         System.out.println("PILIH METODE");
         System.out.println("1. Metode kofaktor");
-        System.out.println("2. Metode Gauss-Jordan (Row Reduction)");
+        System.out.println("2. Metode OBE");
         System.out.println("3. Metode Sarrus");
         System.out.print("Pilihan : ");
         Scanner scanner = new Scanner(System.in);
